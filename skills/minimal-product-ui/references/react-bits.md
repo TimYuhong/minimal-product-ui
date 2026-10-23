@@ -7,6 +7,9 @@
 - 安装方式：[Installation](https://reactbits.dev/get-started/installation)
 - 许可：[LICENSE.md](https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md)
 
+先按 [source-policy.md](source-policy.md) 获取并核验源码；锁定 checkout 为 `react-bits`。
+检查所选文件中的 imports、可访问性、默认视觉和资源清理，不凭演示效果猜实现。
+
 ## 定位与采用条件
 
 先实现可用的极简纯白与深色，再判断某个组件是否改善反馈、状态理解、导航或实际内容展示。
@@ -50,4 +53,5 @@ Aceternity UI 一起默认堆入页面，也不默认整套复刻其演示站或
 
 普通业务网站集成与售卖组件包/模板包/克隆工具服务不是同一情形。
 涉及后者或分发方式不清楚时，先提示许可问题并请求用户明确用途，
-不要擅自保证“随便商用、二次售卖都没问题”。本技能只提供引用和集成规范，不附带仓库源码。
+不要擅自保证“随便商用、二次售卖都没问题”。源码从原仓库单独 clone 以供查证，
+不把它们重新打包到公开技能仓库，也不改用本技能的许可覆盖上游条款。

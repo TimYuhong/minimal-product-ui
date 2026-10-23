@@ -14,3 +14,4 @@ node_modules/
 *.tar.gz
 .DS_Store
 Thumbs.db
+skills/minimal-product-ui/assets/upstream/

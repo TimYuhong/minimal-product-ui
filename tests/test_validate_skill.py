@@ -64,6 +64,12 @@ class SkillValidationTests(unittest.TestCase):
             stream.write("\n[TODO: finish this section]\n")
         self.assertTrue(validate_skill(self.root))
 
+    def test_external_downloaded_docs_are_not_skill_instructions(self):
+        upstream = self.root / "assets/upstream/example"
+        upstream.mkdir(parents=True)
+        (upstream / "README.md").write_text("[Upstream-only link](missing-file.md)\n", encoding="utf-8")
+        self.assertEqual(validate_skill(self.root), [])
+
 
 if __name__ == "__main__":
     unittest.main()

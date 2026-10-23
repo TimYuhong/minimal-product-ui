@@ -6,6 +6,9 @@
 - 当前 React 文档：[HeroUI React](https://heroui.com/docs/react/getting-started/quick-start)
 - 旧版文档：[HeroUI v2](https://v2.heroui.com/)
 
+先按 [source-policy.md](source-policy.md) 获取并核验源码；锁定 checkout 为 `heroui`，
+读取组件类型、React Aria 组合与 `packages/styles`，不能只按文档记忆编写。
+
 把 HeroUI 当成有自己组件、可访问性与主题体系的 React 库，不只是外观皮肤。
 它可以直接提供项目的基础组件，与 React Bits 等局部交互/动效组件的职责不同。
 

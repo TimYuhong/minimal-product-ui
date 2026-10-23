@@ -18,18 +18,19 @@ $minimal-product-ui 检查当前 React 项目，用极简纯白和深色优化�
 - `references/patterns-and-components.md`：React 生态按需选型。
 - `references/heroui.md`、`react-bits.md`：版本、集成与许可注意事项。
 - `references/lessons-and-acceptance.md`：设计教训及验收情境。
+- `references/source-policy.md`、`upstreams.json`：源码核验流程与锁定提交。
 
 首次获取可使用 `git clone https://github.com/TimYuhong/minimal-product-ui.git`。
 维护时先 `git pull --ff-only`，编辑技能及所需参考，校验后提交并 `git push`。
 不要强推覆盖远端变更，也不要把账号凭证、项目私有配置或业务输出放入仓库。
 
-## 本机接入
+## 安装
 
-本机维护目录为 `E:\tools\skill-repos\personal-ui-skills`。
-`%USERPROFILE%\.codex\skills\minimal-product-ui` 是指向本仓库技能目录的 Junction，
-不是第二份副本；修改或拉取后使用同一份源文件，无需重新复制安装。
+从仓库根目录，将 `skills/minimal-product-ui` 接入你自己的 Codex 技能目录。
+以下命令通过环境变量或当前用户目录解析目标，不依赖维护者的磁盘路径。
+已有同名技能时先核对来源，不直接覆盖。
 
-其他 Windows 机器可在克隆后，从仓库根目录运行：
+Windows PowerShell：
 
 ```powershell
 $repoRoot = (Resolve-Path .).Path
@@ -40,7 +41,40 @@ New-Item -ItemType Directory -Path $skillsDir -Force | Out-Null
 New-Item -ItemType Junction -Path $skillLink -Target (Join-Path $repoRoot 'skills\minimal-product-ui')
 ```
 
-不要移动仍被 Junction 使用的源目录。迁移路径前先核对链接目标，保留源文件。
+macOS / Linux：
+
+```sh
+skills_dir="${CODEX_HOME:-$HOME/.codex}/skills"
+mkdir -p "$skills_dir"
+test ! -e "$skills_dir/minimal-product-ui" && test ! -L "$skills_dir/minimal-product-ui" &&
+  ln -s "$PWD/skills/minimal-product-ui" "$skills_dir/minimal-product-ui"
+```
+
+目录链接让已安装技能与 Git 仓库使用同一份源文件。不要移动仍被链接引用的克隆目录；
+迁移前先检查并更新链接，而不是删除源文件。
+
+## 下载真实 UI 源码
+
+本技能不是“记住库名然后自由发挥”。开始采用组件前，必须读取匹配版本的真实源码、
+类型、样式与许可，记录来源。Git 和 Python 3.10+ 可用后，在仓库根目录运行：
+
+```sh
+python skills/minimal-product-ui/scripts/ui_sources.py fetch
+python skills/minimal-product-ui/scripts/ui_sources.py verify
+```
+
+这会实际 clone 并检出 `upstreams.json` 锁定的 **shadcn/ui、Radix Primitives、HeroUI、React Bits**
+提交，使用 sparse checkout 下载所需源码区域，保留完整 Git 来源信息及上游许可。
+源码位于技能内的 `assets/upstream/<source-id>/`，不运行上游安装/构建脚本。
+可以用 `--source heroui` 等参数限制操作范围。
+
+下载目录由脚本相对技能位置解析，是 Git 忽略的独立上游 checkout，不混入本仓库提交。
+公开的锁定清单与脚本使其他使用者可以取得相同源码；校验会检查 origin、HEAD、
+本地修改和关键源码/许可文件。离线且未取得源码时，应明确标注未核验，不能冒称官方实现。
+
+这些快照供源码核验，不意味着应安装开发分支依赖或升级现有项目。
+项目采用其他版本时，应先获取与实际安装版本匹配的官方 tag/commit，并记录证据。
+详细流程见 [source-policy.md](skills/minimal-product-ui/references/source-policy.md)。
 
 ## 校验
 
@@ -50,10 +84,11 @@ Python 3.10+，校验依赖独立于 React 项目；可在仓库内使用虚拟�
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -B scripts/validate_skill.py
+.\.venv\Scripts\python.exe -B scripts/validate_repository.py
 .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-本地校验检查技能结构、YAML 元数据、内部引用及校验器回归用例。
+本地校验检查技能结构、YAML 元数据、内部引用、公开文件中的个人绝对路径与校验器回归用例。
 结构校验不证明实际 UI 设计、浏览器行为或真实业务成功；行为验收见技能内的情境清单。
 
 自动校验模板位于 `maintenance/validate-workflow.yml`，当前尚未启用 GitHub Actions。
@@ -64,9 +99,9 @@ python -m venv .venv
 
 React 组件可以按项目需要选择 shadcn/Radix、HeroUI，局部视觉组件可以选择 React Bits、
 Magic UI、Aceternity UI；其他生态工具按技能中的适用条件使用。
-本仓库只保存原创规范与上游引用，**不包含这些库的源码或演示站**，不需要先下载整库或安装 UI 依赖。
-
-需要修改某个组件的上游源码时，再按实际组件、版本、许可与维护目标决定是否 fork 或下载。
+上游源码会实际下载到独立 checkout，公开仓库保存其锁定记录、可复现获取脚本和使用约束，
+不把第三方整库或演示站重新分发为本技能的一部分。当前只读核验无需创建额外 fork；
+需要维护上游改动时，再按组件、版本、许可与维护目标创建独立 fork。
 采用的源码应记录来源/版本/改动并保留适用声明，不能把别人的代码换上本仓库的许可。
 尤其注意 React Bits 的 MIT + Commons Clause 附加限制，以及 HeroUI 不同版本和文件的许可核对。
 查阅文档不需要额外注册 MCP 或安装第三方 skills。

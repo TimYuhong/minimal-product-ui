@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 import re
 from urllib.parse import unquote, urlsplit
@@ -40,7 +41,12 @@ def validate_skill(directory: Path) -> list[str]:
     if not isinstance(description, str) or not description.strip() or len(description) > 1024:
         errors.append("Description must be non-empty text of at most 1024 characters")
 
-    for document in sorted(root.rglob("*.md")):
+    documents: list[Path] = []
+    for directory, subdirectories, filenames in os.walk(root):
+        current = Path(directory)
+        subdirectories[:] = [name for name in subdirectories if name != ".git" and (current / name).relative_to(root).parts != ("assets", "upstream")]
+        documents.extend(current / name for name in filenames if name.endswith(".md"))
+    for document in sorted(documents):
         try:
             content = document.read_text(encoding="utf-8")
         except UnicodeError:

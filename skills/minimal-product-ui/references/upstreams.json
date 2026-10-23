@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-23",
+  "sources": [
+    {
+      "id": "shadcn-ui",
+      "repository": "https://github.com/shadcn-ui/ui.git",
+      "ref": "main",
+      "commit": "3d98900e9b73c45f035f8109e9d41ba6a51685e7",
+      "sparse_paths": ["apps/v4/registry/new-york-v4/ui", "apps/v4/lib"],
+      "required_files": ["apps/v4/registry/new-york-v4/ui/button.tsx", "apps/v4/registry/new-york-v4/ui/dialog.tsx", "apps/v4/registry/new-york-v4/ui/input.tsx", "apps/v4/registry/new-york-v4/ui/tabs.tsx"],
+      "license_files": ["LICENSE.md"]
+    },
+    {
+      "id": "radix-primitives",
+      "repository": "https://github.com/radix-ui/primitives.git",
+      "ref": "main",
+      "commit": "eb3a2b7091293e27df8f9ba906632d8daa3d81a3",
+      "sparse_paths": ["packages/react"],
+      "required_files": ["packages/react/dialog/src/dialog.tsx", "packages/react/tabs/src/tabs.tsx", "packages/react/checkbox/src/checkbox.tsx"],
+      "license_files": ["LICENSE"]
+    },
+    {
+      "id": "heroui",
+      "repository": "https://github.com/heroui-inc/heroui.git",
+      "ref": "v3",
+      "commit": "2f03bfbdccbad04167ee3f22df088aef56d2bc96",
+      "sparse_paths": ["packages/react/src", "packages/styles"],
+      "required_files": ["packages/react/package.json", "packages/react/src/components/button/button.tsx", "packages/react/src/components/modal/modal.tsx", "packages/styles/components/button.css"],
+      "license_files": ["LICENSE"]
+    },
+    {
+      "id": "react-bits",
+      "repository": "https://github.com/DavidHDev/react-bits.git",
+      "ref": "main",
+      "commit": "e12c22192ac7b4b452c5e2feb9b586d74765d696",
+      "sparse_paths": ["src/ts-tailwind"],
+      "required_files": ["src/ts-tailwind/Components/AnimatedList/AnimatedList.tsx", "src/ts-tailwind/TextAnimations/SplitText/SplitText.tsx"],
+      "license_files": ["LICENSE.md"]
+    }
+  ]
+}

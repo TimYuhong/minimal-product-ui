@@ -1,0 +1,4 @@
+interface:
+  display_name: "极简产品 UI"
+  short_description: "React 极简纯白与深色 UI，按需结合 shadcn、HeroUI 与 React Bits"
+  default_prompt: "使用 $minimal-product-ui，先检查现有 React/Next.js 项目，以极简纯白和深色建立功能完整的界面，再按实际功能和使用体验做小幅调整。"

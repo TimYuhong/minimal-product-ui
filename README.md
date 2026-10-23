@@ -14,6 +14,7 @@ $minimal-product-ui 检查当前 React 项目，用极简纯白和深色优化�
 主要文件：
 
 - `SKILL.md`：工作流程、默认原则和执行边界。
+- `references/frontend-brief.md`：用户提供的完整前端工程提示词与使用说明。
 - `references/visual-baseline.md`：双主题、排版、空间和反馈基线。
 - `references/patterns-and-components.md`：React 生态按需选型。
 - `references/heroui.md`、`react-bits.md`：版本、集成与许可注意事项。

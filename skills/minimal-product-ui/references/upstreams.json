@@ -1,42 +1,1094 @@
 {
   "schema_version": 1,
-  "verified_on": "2026-10-23",
+  "verified_on": "2026-10-24",
   "sources": [
     {
       "id": "shadcn-ui",
       "repository": "https://github.com/shadcn-ui/ui.git",
       "ref": "main",
       "commit": "3d98900e9b73c45f035f8109e9d41ba6a51685e7",
-      "sparse_paths": ["apps/v4/registry/new-york-v4/ui", "apps/v4/lib"],
-      "required_files": ["apps/v4/registry/new-york-v4/ui/button.tsx", "apps/v4/registry/new-york-v4/ui/dialog.tsx", "apps/v4/registry/new-york-v4/ui/input.tsx", "apps/v4/registry/new-york-v4/ui/tabs.tsx"],
-      "license_files": ["LICENSE.md"]
+      "sparse_paths": [
+        "apps/v4/registry/new-york-v4/ui",
+        "apps/v4/lib"
+      ],
+      "required_files": [
+        "apps/v4/registry/new-york-v4/ui/button.tsx",
+        "apps/v4/registry/new-york-v4/ui/dialog.tsx",
+        "apps/v4/registry/new-york-v4/ui/input.tsx",
+        "apps/v4/registry/new-york-v4/ui/tabs.tsx"
+      ],
+      "license_files": [
+        "LICENSE.md"
+      ]
     },
     {
       "id": "radix-primitives",
       "repository": "https://github.com/radix-ui/primitives.git",
       "ref": "main",
       "commit": "eb3a2b7091293e27df8f9ba906632d8daa3d81a3",
-      "sparse_paths": ["packages/react"],
-      "required_files": ["packages/react/dialog/src/dialog.tsx", "packages/react/tabs/src/tabs.tsx", "packages/react/checkbox/src/checkbox.tsx"],
-      "license_files": ["LICENSE"]
+      "sparse_paths": [
+        "packages/react"
+      ],
+      "required_files": [
+        "packages/react/dialog/src/dialog.tsx",
+        "packages/react/tabs/src/tabs.tsx",
+        "packages/react/checkbox/src/checkbox.tsx"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
     },
     {
       "id": "heroui",
       "repository": "https://github.com/heroui-inc/heroui.git",
       "ref": "v3",
       "commit": "2f03bfbdccbad04167ee3f22df088aef56d2bc96",
-      "sparse_paths": ["packages/react/src", "packages/styles"],
-      "required_files": ["packages/react/package.json", "packages/react/src/components/button/button.tsx", "packages/react/src/components/modal/modal.tsx", "packages/styles/components/button.css"],
-      "license_files": ["LICENSE"]
+      "sparse_paths": [
+        "packages/react/src",
+        "packages/styles"
+      ],
+      "required_files": [
+        "packages/react/package.json",
+        "packages/react/src/components/button/button.tsx",
+        "packages/react/src/components/modal/modal.tsx",
+        "packages/styles/components/button.css"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
     },
     {
       "id": "react-bits",
       "repository": "https://github.com/DavidHDev/react-bits.git",
       "ref": "main",
       "commit": "e12c22192ac7b4b452c5e2feb9b586d74765d696",
-      "sparse_paths": ["src/ts-tailwind"],
-      "required_files": ["src/ts-tailwind/Components/AnimatedList/AnimatedList.tsx", "src/ts-tailwind/TextAnimations/SplitText/SplitText.tsx"],
-      "license_files": ["LICENSE.md"]
+      "sparse_paths": [
+        "src/ts-tailwind"
+      ],
+      "required_files": [
+        "src/ts-tailwind/Components/AnimatedList/AnimatedList.tsx",
+        "src/ts-tailwind/TextAnimations/SplitText/SplitText.tsx"
+      ],
+      "license_files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "id": "magic-ui",
+      "repository": "https://github.com/magicuidesign/magicui.git",
+      "ref": "main",
+      "commit": "efe76fc5755eca1142dd4f74c1d6f0ace2887e3c",
+      "sparse_paths": [
+        "apps/www/registry",
+        "apps/www/lib"
+      ],
+      "required_files": [
+        "apps/www/registry/magicui/animated-list.tsx",
+        "apps/www/registry/magicui/magic-card.tsx"
+      ],
+      "license_files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "id": "lucide",
+      "repository": "https://github.com/lucide-icons/lucide.git",
+      "ref": "main",
+      "commit": "7faf87628a1ad6175975bc595344337ce14a7db4",
+      "sparse_paths": [
+        "packages/lucide-react",
+        "packages/lucide",
+        "packages/shared",
+        "icons",
+        "docs"
+      ],
+      "required_files": [
+        "packages/lucide-react/src/createLucideIcon.ts",
+        "packages/lucide-react/src/Icon.ts",
+        "packages/lucide-react/src/lucide-react.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "motion",
+      "repository": "https://github.com/motiondivision/motion.git",
+      "ref": "main",
+      "commit": "fa2079f101353f1fa1c9463f5ba9709a0ca3d3bf",
+      "sparse_paths": [
+        "packages/framer-motion",
+        "packages/motion",
+        "packages/motion-dom",
+        "packages/motion-utils"
+      ],
+      "required_files": [
+        "packages/framer-motion/src/index.ts",
+        "packages/motion/src/index.ts",
+        "packages/motion-dom/src/index.ts"
+      ],
+      "license_files": [
+        "LICENSE.md",
+        "packages/motion/LICENSE.md"
+      ]
+    },
+    {
+      "id": "tailwindcss",
+      "repository": "https://github.com/tailwindlabs/tailwindcss.git",
+      "ref": "main",
+      "commit": "8cc0551b1217d36dc565840b90920964d37cb46c",
+      "sparse_paths": [
+        "packages"
+      ],
+      "required_files": [
+        "packages/tailwindcss/src/index.ts",
+        "packages/@tailwindcss-vite/src/index.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "react-resizable-panels",
+      "repository": "https://github.com/bvaughn/react-resizable-panels.git",
+      "ref": "main",
+      "commit": "c19f0a93a96e4f214e9bd7b77eaec155f31f50d7",
+      "sparse_paths": [
+        "lib"
+      ],
+      "required_files": [
+        "lib/components/group/Group.tsx",
+        "lib/components/grid/Grid.tsx"
+      ],
+      "license_files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "id": "dnd-kit",
+      "repository": "https://github.com/clauderic/dnd-kit.git",
+      "ref": "main",
+      "commit": "2fcef8180f68a0cff6d629089ed014ea2131cbe6",
+      "sparse_paths": [
+        "packages/react",
+        "packages/dom",
+        "packages/abstract",
+        "packages/collision",
+        "packages/geometry",
+        "packages/helpers",
+        "packages/state"
+      ],
+      "required_files": [
+        "packages/react/src/core/context/DragDropProvider.tsx",
+        "packages/react/src/sortable/index.ts"
+      ],
+      "license_files": [
+        "LICENSE",
+        "packages/react/LICENSE"
+      ]
+    },
+    {
+      "id": "zustand",
+      "repository": "https://github.com/pmndrs/zustand.git",
+      "ref": "main",
+      "commit": "382d29c485e67018c06e75ec7235130d0968522c",
+      "sparse_paths": [
+        "src",
+        "docs"
+      ],
+      "required_files": [
+        "src/index.ts",
+        "src/vanilla.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "tanstack-query",
+      "repository": "https://github.com/TanStack/query.git",
+      "ref": "main",
+      "commit": "9e4253766f8015d1372bcd515f50103fd067a42d",
+      "sparse_paths": [
+        "packages/react-query",
+        "packages/query-core",
+        "docs/framework/react",
+        "docs/reference"
+      ],
+      "required_files": [
+        "packages/react-query/src/index.ts",
+        "packages/query-core/src/index.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "recharts",
+      "repository": "https://github.com/recharts/recharts.git",
+      "ref": "main",
+      "commit": "2923a2b2666090a94d84bbb05bb4c4e1ec61863a",
+      "sparse_paths": [
+        "src"
+      ],
+      "required_files": [
+        "src/index.ts",
+        "src/chart/LineChart.tsx",
+        "src/component/ResponsiveContainer.tsx"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "morphicons",
+      "repository": "https://github.com/guillermolg00/morphicons.git",
+      "ref": "main",
+      "commit": "910e895355acc0560fdb49449373c915a0325023",
+      "sparse_paths": [
+        "src",
+        "docs",
+        "test"
+      ],
+      "required_files": [
+        "src/react/index.tsx",
+        "src/dom/index.ts",
+        "src/core/types.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "aceternity-ui",
+      "kind": "registry",
+      "homepage": "https://ui.aceternity.com",
+      "version": "registry-20261024T054637Z",
+      "component_count": 114,
+      "artifacts": [
+        {
+          "url": "https://ui.aceternity.com/registry.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/index.json",
+          "sha256": "fc4da47c8bd3232a7542056c0b64b2b2ada5dc3889cabb03d0392e90d897908c"
+        },
+        {
+          "url": "https://ui.aceternity.com/licence",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/license/licence.html",
+          "sha256": "afd67c2d1e14ae0634cd597a06bbfda79a59ba7dc58a678f6ac87afb8f1d7f31"
+        },
+        {
+          "url": "https://ui.aceternity.com/terms",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/license/terms.html",
+          "sha256": "c6d5950f55a450714495fad58fa3aa7d17f73166d09bad6964f7bd21ae501192"
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/3d-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/3d-card.json",
+          "sha256": "c2916dc70428da48e40ece3907b25ab028a7351c8da4410e3bf3a40688b24082",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/3d-globe.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/3d-globe.json",
+          "sha256": "69205b06a502d0de7374cef0b719f34d91109fd70ef0093228bd2ce1fef78b97",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/3d-marquee.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/3d-marquee.json",
+          "sha256": "050920d84b098fc0039761d4e7f2cd5db8030755d60c0c324fa89048dbf91062",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/3d-pin.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/3d-pin.json",
+          "sha256": "605cd71a7afe1014c84fdf53c7521ec5d44a8a2eb09ae8f08952e0106d48ebab",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/animated-modal.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/animated-modal.json",
+          "sha256": "141e95b1c01a22c3678be302a2eac5091b3dd0b8ceeebd7a6dbd461861ebf92a",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/animated-testimonials.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/animated-testimonials.json",
+          "sha256": "2bd0f7353df4b76f4e2e03d7b9805787d8a4900f1cd5f6be8a30c9e04e770341",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/animated-tooltip.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/animated-tooltip.json",
+          "sha256": "038df40626ed0cb682f737f9f28261251c57f4c994fec4289d724bd94c60011e",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/apple-cards-carousel.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/apple-cards-carousel.json",
+          "sha256": "47e5f3bcc11ed1af53bbb66c1bd65a3e4ed74dcfc308f6f2bfd68804f64205fb",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/ascii-art.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/ascii-art.json",
+          "sha256": "b2b33b6dd356504c56b8b80401844a0b652e18435ed490657ebda39999428d4c",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/aurora-background.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/aurora-background.json",
+          "sha256": "a588ab66d7ac909e014ac3a30bc7d999af15f04b757fbaee048d9cf01df4dd96",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-beams.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-beams.json",
+          "sha256": "88af2973c676fabaee374fae69964ca7ce5fab84ea69fab8f2e0eb0146faf492",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-beams-with-collision.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-beams-with-collision.json",
+          "sha256": "9337d964f6d597c3fe8edd2f3a3b37afacd9ec3577ffcbc4a61aeb0e92eebe5f",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-boxes.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-boxes.json",
+          "sha256": "8de360b241e03c977853dec28672d37de88cc7ed2fb28112a9964d78ed35d7c5",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-cubes-grid.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-cubes-grid.json",
+          "sha256": "6212b5ea30dd41b6da395fee076a52d8e55aee3762dd00ba6f46e75b366ce64d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-gradient.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-gradient.json",
+          "sha256": "43899f7deb2c4fee2dea817c0a2c0e11b56ddba659f172fbe1bb79498bc7fe9a",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-gradient-animation.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-gradient-animation.json",
+          "sha256": "a42b20bc1582d1113333dfded295fa094294c4983401fe8e068f252fd4f5ad07",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-lines.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-lines.json",
+          "sha256": "97529f224672fb663bce36915cbfbf1b965a067d92467cd4627fcb08de1642f8",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/background-ripple-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/background-ripple-effect.json",
+          "sha256": "9b3b38fb58fe79c9c31a8235f8c92e504692f00974d7459f409a1a00fd9b408d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/bento-grid.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/bento-grid.json",
+          "sha256": "9d988ea63b4209b65e386aa26dba37005d67667e122184c8905b6d31eda32482",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/canvas-reveal-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/canvas-reveal-effect.json",
+          "sha256": "68ce92e879c578275ef4d74c6b0fe312bc8c114d8d0fb25d709f3913e9cd85c4",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/canvas-text.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/canvas-text.json",
+          "sha256": "33f09aa1897751b29b1530ef57282666d6d29fc180f177a612452307fe9f3965",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/card-hover-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/card-hover-effect.json",
+          "sha256": "6f9451d50fdce14344c0fbab29f8f47ac29bd11d11dc11fb95f3fc94bce271af",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/card-spotlight.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/card-spotlight.json",
+          "sha256": "a46aab4f9f62bce0fb183635a03206be695f181d46a8c9b78ffed796906d5b6c",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/card-stack.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/card-stack.json",
+          "sha256": "92845c0100e8b673eae51a48d873f54114180bcec3a28f0e5c4c9cf10d24e224",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/carousel.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/carousel.json",
+          "sha256": "0855d5a69a43dfb2e2025ca6b99f04d0aa2f5a30023954174a6b01a6bcf6e506",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/chromatic-image.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/chromatic-image.json",
+          "sha256": "6ca63f7c00e558568c5d2b91af073658354f98d223382dfc6b3d6454d2b5715d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/cloud-shader.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/cloud-shader.json",
+          "sha256": "115f3c8f171e70e12afe5abe4de8aaaf2a854eff5da9c4a91d9399eead8697ec",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/code-block.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/code-block.json",
+          "sha256": "fa45c82d6dd867477213374d837ea75b00d4642ef686edf15cbc4df743d623d2",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/colourful-text.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/colourful-text.json",
+          "sha256": "e496a1f2160ca55376629fc127b1ccdfd8fb5b6125b9eb416818f7210e11fcca",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/comet-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/comet-card.json",
+          "sha256": "ec37ce2b6930cbea451648ee517dcc6f5e25810c80d46544cd7a26f2d113112a",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/compare.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/compare.json",
+          "sha256": "73636598e1991cd0c400159a1a471b3831c48e9a4a508b80e267ebdf1ee185b6",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/container-scroll-animation.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/container-scroll-animation.json",
+          "sha256": "222df8f0821d2cf27e7e8a0c3675018254ccf014ca6f7a632e40ce81c1e6d2bc",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/container-text-flip.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/container-text-flip.json",
+          "sha256": "be4a39c38c35141f983129b547301a9c40ae134ccc0fd62574a7cdf095d81b96",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/cover.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/cover.json",
+          "sha256": "9cc8122716b7219f63538296815d74cd6bfcd459c96b8134d3fd4dec60151e07",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/direction-aware-hover.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/direction-aware-hover.json",
+          "sha256": "4ee3a3b3bef16c17d4781608a5cfadbb287660ea8a4c66d4659b801408aa9fae",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/dither-shader.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/dither-shader.json",
+          "sha256": "0b87bec37777ad4f4a1080d8e8bf29d41dbdba91d8f8beddb30281a65985d5a0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/dotted-glow-background.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/dotted-glow-background.json",
+          "sha256": "c26c5a69756382b89695e2541662124d806103692566a0c41ab6ae9216a1952d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/draggable-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/draggable-card.json",
+          "sha256": "6ff8db3eb2ffe72a70238548f2a6e6bad07623853f4b795e2843123a072b8ae8",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/encrypted-text.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/encrypted-text.json",
+          "sha256": "f89693d8bce9196f26a73c928db63b57563f00b0d32351b8a4781bd297109ef7",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/evervault-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/evervault-card.json",
+          "sha256": "61118061aabe213f61ecf5ad4e4a298c8bafc7d73c526bd9fe1e07ff6b351216",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/file-upload.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/file-upload.json",
+          "sha256": "12fac552ba06e9afb6ca566feae6dfd81f24957ebeb8a46ccfb0941a52d053e9",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/flip-words.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/flip-words.json",
+          "sha256": "871a2e18f3088970a368f3160f0e26c81356634beaeb05a08a8547773df292a1",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/floating-dock.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/floating-dock.json",
+          "sha256": "0c790f445d65ab60e5677f0973456a89e4b3e0b27b6c28197dbbaae311404c58",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/floating-navbar.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/floating-navbar.json",
+          "sha256": "a303239b666c526ce0a63da3e4122eaa03b76c26768f4e68f867200a2fa6f529",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/focus-cards.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/focus-cards.json",
+          "sha256": "cfd059f674ea4d91cadd28016deee21270044ea2c39709d643c60ab6b7ceee6d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/following-pointer.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/following-pointer.json",
+          "sha256": "87248234c9605ed56d137d328d26417ae86082cda7dda730889f9567356c1ef4",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/glare-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/glare-card.json",
+          "sha256": "b044c4edc76cfe35942d677a8e971d1e7e64f3574c1f6af079d48a6923865835",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/globe.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/globe.json",
+          "sha256": "e502802158f5593331c48370f973afc7555dcdaf33ad6a0e02d95e0294d1c138",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/glowing-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/glowing-effect.json",
+          "sha256": "8a13db18779c78f624a7b00c06af807ba668ac9f2383dcb969a1a3211bea1886",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/glowing-stars.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/glowing-stars.json",
+          "sha256": "fc9ad1c32e8c57367e66583d499438ed784192136454269787e66ddc761c26ee",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/gooey-input.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/gooey-input.json",
+          "sha256": "8aafc99e29861f0e293bd5271f2a2636f475642036c98288c84f937cf53f504d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/google-gemini-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/google-gemini-effect.json",
+          "sha256": "9487d0e6a487582b83f66f23a2b9f7896a330e8e903be5706a46c5a03ca57bd0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/grid.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/grid.json",
+          "sha256": "755b3dfecce3d56b725941f584cc1d093c14286f3c8d7d2d77106bb199e3a249",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/hero-highlight.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/hero-highlight.json",
+          "sha256": "0090a13cc08d7c8762daacce9f9e75788df08d611420a231c5405777198af047",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/hero-parallax.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/hero-parallax.json",
+          "sha256": "fd04ac21350b519740fc2e08ca8b1e5e3d928c1f23dd29468f6caabb474aa891",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/hover-border-gradient.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/hover-border-gradient.json",
+          "sha256": "d1adc254f1bb18386598ae6afe930a4a12069e963184159fad4e4b8f797da5bf",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/image-generation-loader.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/image-generation-loader.json",
+          "sha256": "bedd7580632c6c0906c9660da7ff1c1f934839af98059a93cb0675574a961359",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/images-badge.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/images-badge.json",
+          "sha256": "f85e2ea9ecab4db9b9349552bfe765271a91e341e45dd088c8dc74d7c24f7cc0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/images-slider.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/images-slider.json",
+          "sha256": "17219d621de7d7562b06fc727fe5b1a759eea0860311851b54289b4a2122a808",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/infinite-moving-cards.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/infinite-moving-cards.json",
+          "sha256": "bc236e642c309e3a08877adff51d2eb32182c727d5f7132e8f5f9aaacaf1c742",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/input.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/input.json",
+          "sha256": "8e1d9209741a5a8aac7f0d314d2ae4ca2e071a4f6faa595c1df5b0f81845cb53",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/keyboard.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/keyboard.json",
+          "sha256": "43026e27d855e2db85e58cfad88dbdf3ce5d3a05ba7ae44293bbc92f80e52244",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/label.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/label.json",
+          "sha256": "9d4dea1eb3cdbf1a48ab515ba3b06df551296074f126d9831a5d6e2f71bed355",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/lamp.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/lamp.json",
+          "sha256": "197f13356996a51b253e953da656c71dc3cb3e7d1a967603d5656dd314b45758",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/layout-grid.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/layout-grid.json",
+          "sha256": "234bfebc536af7cc6725cdb7c6ffa7270171c06a34c7ee0941ecbb2c58c2f6dc",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/layout-text-flip.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/layout-text-flip.json",
+          "sha256": "85f079761b9ee385443deb0a086ccc987f9d0f427336965ff196c09a95b948d1",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/lens.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/lens.json",
+          "sha256": "3c7a790fd4b0c3d5d126ac0a5f91186480e0ac945ee3779b755fe3b396e56f83",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/link-preview.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/link-preview.json",
+          "sha256": "cd63f8210b07d4308aa1061b8cf0b79100cdd66b4d34a9b0ce286bf616fa9c8c",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/liquid-glass.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/liquid-glass.json",
+          "sha256": "8469c921999806e69a15b7d60c965d4bbc4db0bbb9e83c7d6e800d4d3455abb3",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/loader.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/loader.json",
+          "sha256": "2d777a751e1bfd6aaa9b2ca4a92e7c27d2d2522beba91cba8de9f0beb5619501",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/macbook-scroll.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/macbook-scroll.json",
+          "sha256": "d7703f8ec9589014c15a5ed8a52aee92e489d38742815a3efd579999076db6a6",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/magnetic-button.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/magnetic-button.json",
+          "sha256": "cf50b980f4f8585c5fdd3bd2fa5ca1fa52bf1b24366cff91d7a23b6694c79416",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/meteors.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/meteors.json",
+          "sha256": "c46b9245e09d2039ec0baf256d2fb84957a034884e5a01e929f2a3f62366c794",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/moving-border.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/moving-border.json",
+          "sha256": "e44f978e969cb302619f73f09af8a26092163b6ec3db005fc49f1abaa5994186",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/moving-line.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/moving-line.json",
+          "sha256": "042912d7feedda3fcabcade4ffea54625b3ce5790b505549e658405ca7cdc856",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/multi-step-loader.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/multi-step-loader.json",
+          "sha256": "9b664e381b2d96b55785aeb6e63c6a66d6f78d31452631d067fb74b60db06b73",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/navbar-menu.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/navbar-menu.json",
+          "sha256": "85ea288bcc5d8d7c1865ba6f9261a6691a0e810bfdfe9b7e546cd7cb70650c10",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/noise-background.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/noise-background.json",
+          "sha256": "300027e3a76b893ce1e00ad0470dbd96bcf4481c7c8a6abfab115115e3e830ea",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/notch.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/notch.json",
+          "sha256": "97c7c81ba98661db1ed1d4de279d677c88147ec9110865505110722d1aeddf48",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/parallax-hero-images.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/parallax-hero-images.json",
+          "sha256": "e26ae3506ecf1085b03a1acd41653ad5fbad992b500071132f78ba9309c85ce1",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/parallax-scroll.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/parallax-scroll.json",
+          "sha256": "970ef6a9ca48c63cd9780c0f43b5a559d794ae12dc768213bb209c76fce817cc",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/parallax-scroll-2.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/parallax-scroll-2.json",
+          "sha256": "ca327b960d1fb724c419f8657b9c9e7480fcbc9f2e6145dd05eb2a2fe83e776c",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/pixelated-canvas.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/pixelated-canvas.json",
+          "sha256": "47d75c70c1a32ab27229369569860977b1eddc19b5351e72a6bf06f7dfa5faac",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/placeholders-and-vanish-input.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/placeholders-and-vanish-input.json",
+          "sha256": "770f5a15cd81c03c6684047715517966616589013895dfc0aa9fc1ca7f6d40bc",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/pointer-highlight.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/pointer-highlight.json",
+          "sha256": "c7e91d4111efda9f2ed6f4d36af7d2976d1ed9d9dc97a63905d56ab24cf08384",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/resizable-navbar.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/resizable-navbar.json",
+          "sha256": "3294ecb0b3efacc058c190575a1bdacd9084f7b994812d4f3e3879b0ba5440f9",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/scales.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/scales.json",
+          "sha256": "20757599d859c3af7aa7dd710e42fe14938f2406e71559ac218afac05df0f4a0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/shooting-stars.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/shooting-stars.json",
+          "sha256": "b2fdbf73fa911fafdca9ca8f9fe262b0ae8da711faaed54a24b4c5c2f3dac0e0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/sidebar.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/sidebar.json",
+          "sha256": "df9cbde825e234d19b781c9595c63037decd86714a28ce7a2e3eb6403146877b",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/sparkles.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/sparkles.json",
+          "sha256": "34f145078d73302c79960f0f049804bbd47f75a7459ac97ef079e1f67d79fc22",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/spotlight.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/spotlight.json",
+          "sha256": "8fb8ccb5bff388c48df583cd15be9562f4d8adf3f7223d8a636a51c52f6f1d7e",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/spotlight-new.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/spotlight-new.json",
+          "sha256": "df03e25ac5d808013c5287e52caaec424120f4a5010f886304d3f7084707c2ed",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/squiggly-text.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/squiggly-text.json",
+          "sha256": "be1ef9e7d967d9425ab7b30f8190cf67b56a04eca92ffaad4d814f4bda4191c1",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/stars-background.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/stars-background.json",
+          "sha256": "06c5a30931d3db2baa1482c65a383757dacce15c18aaaced35f57bf7890d2229",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/stateful-button.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/stateful-button.json",
+          "sha256": "a56addb268e991c0db018e20dbee7fb00ef9e0a3991053d696e765848c866b66",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/sticky-banner.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/sticky-banner.json",
+          "sha256": "3ca7a8577d2677377deb0205607553d3f121b20ff034d8952c4b868da3ddf5a7",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/sticky-scroll-reveal.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/sticky-scroll-reveal.json",
+          "sha256": "24168fbc0b5b70903621f0601849ab6566d477cf0f6b9bbe7b7d1aa7b2671e60",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/svg-mask-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/svg-mask-effect.json",
+          "sha256": "0421e93ec60da644c4fe263c24b3f631471642aeb4f3fec6052bf6e6c6106fa1",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/tabs.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/tabs.json",
+          "sha256": "a0f2d1eb503190ec2e53ee5887a9b33d7c94e3f6d6548f07afd0a79ef0effcaa",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/tailwindcss-buttons.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/tailwindcss-buttons.json",
+          "sha256": "c1cc036411b81e550d5619ed693a72810f773bf865c85812b1f96f68017ddac6",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/terminal.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/terminal.json",
+          "sha256": "85db211dec21cc866129852f76114af1e2cf460de1015228c8abdd7107123a97",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/text-flipping-board.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/text-flipping-board.json",
+          "sha256": "e4f82aca57ab253b658f3f332138fc617bd5c9d0e59ff8f4ec2c01c892a3b75d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/text-generate-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/text-generate-effect.json",
+          "sha256": "31f3b8c41b215c8e91a6068c03e63d18ba1b2f196d055827eec6b6cf593ced1f",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/text-hover-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/text-hover-effect.json",
+          "sha256": "1063dbb3ae58a2865b624225f434c9c48093c3644a72994bf2901657e40aca2e",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/text-reveal-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/text-reveal-card.json",
+          "sha256": "7b018f2e76e11bb708fb27fa6e010ec65035857d3d78e37c536879a2ae6161f2",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/timeline.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/timeline.json",
+          "sha256": "32ec3327b9057d7f5dc75488d92a5cd1f233581437d58d55555ad260b771a9e0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/tooltip-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/tooltip-card.json",
+          "sha256": "9367df8f3e80c20c70fca76fffb5459585a34dc32f9c58b226413618607e6bbe",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/tracing-beam.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/tracing-beam.json",
+          "sha256": "58ac7ff5ab9dbf1a6fd3250fc37ab1a66484b3ce4dc6dfce73270c111e2ea991",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/typewriter-effect.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/typewriter-effect.json",
+          "sha256": "758fc8767e27f355c6dfe0a7e362cb3a1855ceb8cc31e855c5a8be5d62433cb3",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/vortex.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/vortex.json",
+          "sha256": "5067d0a86626ffcb5e476848ca289fac2dabf365e1cd597ce333aee3eb320785",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/wavy-background.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/wavy-background.json",
+          "sha256": "f2cd93764107de13ddd3a0556df5d919027c89031ce614ec76169a7c49f14dd0",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/webcam-pixel-grid.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/webcam-pixel-grid.json",
+          "sha256": "c3de75b4d83841c394058938f67cb506ec57896e8a8fed6c642dfe50edf8a74d",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/wobble-card.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/wobble-card.json",
+          "sha256": "2ae04e87bb72af12ed95af38abdb473d1c3c24158cf7b29e925868f696953866",
+          "extract": true
+        },
+        {
+          "url": "https://ui.aceternity.com/registry/world-map.json",
+          "file": "snapshots/20261024T054637Z-fc4da47c8bd3/registry/world-map.json",
+          "sha256": "167ac9534f0b872ca342d40054754c30aec337e64bd22438fa900bfd184cf8bb",
+          "extract": true
+        }
+      ],
+      "required_files": [
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/3d-card/components/ui/3d-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/3d-globe/components/ui/3d-globe.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/3d-marquee/components/ui/3d-marquee.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/3d-pin/components/ui/3d-pin.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/animated-modal/components/ui/animated-modal.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/animated-testimonials/components/ui/animated-testimonials.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/animated-tooltip/components/ui/animated-tooltip.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/apple-cards-carousel/components/ui/apple-cards-carousel.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/apple-cards-carousel/hooks/use-outside-click.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/ascii-art/components/ui/ascii-art.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/aurora-background/components/ui/aurora-background.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-beams/components/ui/background-beams.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-beams-with-collision/components/ui/background-beams-with-collision.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-boxes/components/ui/background-boxes.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-cubes-grid/components/ui/background-cubes-grid.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-gradient/components/ui/background-gradient.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-gradient-animation/components/ui/background-gradient-animation.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-lines/components/ui/background-lines.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/background-ripple-effect/components/ui/background-ripple-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/bento-grid/components/ui/bento-grid.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/canvas-reveal-effect/components/ui/canvas-reveal-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/canvas-text/components/ui/canvas-text.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/card-hover-effect/components/ui/card-hover-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/card-spotlight/components/ui/card-spotlight.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/card-spotlight/components/ui/canvas-reveal-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/card-stack/components/ui/card-stack.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/carousel/components/ui/carousel.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/chromatic-image/components/ui/chromatic-image.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/cloud-shader/components/ui/cloud-shader.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/code-block/components/ui/code-block.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/colourful-text/components/ui/colourful-text.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/comet-card/components/ui/comet-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/compare/components/ui/compare.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/container-scroll-animation/components/ui/container-scroll-animation.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/container-text-flip/components/ui/container-text-flip.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/cover/components/ui/cover.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/cover/components/ui/sparkles.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/direction-aware-hover/components/ui/direction-aware-hover.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/dither-shader/components/ui/dither-shader.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/dotted-glow-background/components/ui/dotted-glow-background.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/draggable-card/components/ui/draggable-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/encrypted-text/components/ui/encrypted-text.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/evervault-card/components/ui/evervault-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/file-upload/components/ui/file-upload.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/flip-words/components/ui/flip-words.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/floating-dock/components/ui/floating-dock.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/floating-navbar/components/ui/floating-navbar.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/focus-cards/components/ui/focus-cards.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/following-pointer/components/ui/following-pointer.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/glare-card/components/ui/glare-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/globe/components/ui/globe.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/glowing-effect/components/ui/glowing-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/glowing-stars/components/ui/glowing-stars.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/gooey-input/components/ui/gooey-input.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/google-gemini-effect/components/ui/google-gemini-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/grid/components/ui/grid.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/hero-highlight/components/ui/hero-highlight.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/hero-parallax/components/ui/hero-parallax.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/hover-border-gradient/components/ui/hover-border-gradient.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/image-generation-loader/components/ui/image-generation-loader.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/images-badge/components/ui/images-badge.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/images-slider/components/ui/images-slider.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/infinite-moving-cards/components/ui/infinite-moving-cards.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/input/components/ui/input.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/keyboard/components/ui/keyboard.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/label/components/ui/label.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/lamp/components/ui/lamp.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/layout-grid/components/ui/layout-grid.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/layout-text-flip/components/ui/layout-text-flip.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/lens/components/ui/lens.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/link-preview/components/ui/link-preview.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/liquid-glass/components/ui/liquid-glass.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/loader/components/ui/loader.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/macbook-scroll/components/ui/macbook-scroll.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/magnetic-button/components/ui/magnetic-button.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/meteors/components/ui/meteors.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/moving-border/components/ui/moving-border.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/moving-line/components/ui/moving-line.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/multi-step-loader/components/ui/multi-step-loader.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/navbar-menu/components/ui/navbar-menu.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/noise-background/components/ui/noise-background.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/notch/components/ui/notch.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/parallax-hero-images/components/ui/parallax-hero-images.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/parallax-scroll/components/ui/parallax-scroll.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/parallax-scroll-2/components/ui/parallax-scroll-2.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/pixelated-canvas/components/ui/pixelated-canvas.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/placeholders-and-vanish-input/components/ui/placeholders-and-vanish-input.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/pointer-highlight/components/ui/pointer-highlight.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/resizable-navbar/components/ui/resizable-navbar.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/scales/components/ui/scales.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/shooting-stars/components/ui/shooting-stars.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/sidebar/components/ui/sidebar.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/sparkles/components/ui/sparkles.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/spotlight/components/ui/spotlight.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/spotlight-new/components/ui/spotlight-new.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/squiggly-text/components/ui/squiggly-text.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/stars-background/components/ui/stars-background.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/stateful-button/components/ui/stateful-button.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/sticky-banner/components/ui/sticky-banner.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/sticky-scroll-reveal/components/ui/sticky-scroll-reveal.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/svg-mask-effect/components/ui/svg-mask-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/tabs/components/ui/tabs.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/tailwindcss-buttons/components/ui/tailwindcss-buttons.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/terminal/components/ui/terminal.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/text-flipping-board/components/ui/text-flipping-board.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/text-generate-effect/components/ui/text-generate-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/text-hover-effect/components/ui/text-hover-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/text-reveal-card/components/ui/text-reveal-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/timeline/components/ui/timeline.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/tooltip-card/components/ui/tooltip-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/tracing-beam/components/ui/tracing-beam.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/typewriter-effect/components/ui/typewriter-effect.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/vortex/components/ui/vortex.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/wavy-background/components/ui/wavy-background.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/webcam-pixel-grid/components/ui/webcam-pixel-grid.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/wobble-card/components/ui/wobble-card.tsx",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/items/world-map/components/ui/world-map.tsx"
+      ],
+      "license_files": [
+        "snapshots/20261024T054637Z-fc4da47c8bd3/license/licence.html",
+        "snapshots/20261024T054637Z-fc4da47c8bd3/license/terms.html"
+      ]
     }
   ]
 }

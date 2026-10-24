@@ -14,6 +14,7 @@ $minimal-product-ui 检查当前 React 项目，用极简纯白和深色优化�
 主要文件：
 
 - `SKILL.md`：工作流程、默认原则和执行边界。
+- `references/workflow.md`：每次 UI 工作先读的选型、源码证据、实现与验收流程。
 - `references/frontend-brief.md`：用户提供的完整前端工程提示词与使用说明。
 - `references/visual-baseline.md`：双主题、排版、空间和反馈基线。
 - `references/patterns-and-components.md`：React 生态按需选型。
@@ -64,18 +65,31 @@ python skills/minimal-product-ui/scripts/ui_sources.py fetch
 python skills/minimal-product-ui/scripts/ui_sources.py verify
 ```
 
-这会实际 clone 并检出 `upstreams.json` 锁定的 **shadcn/ui、Radix Primitives、HeroUI、React Bits**
-提交，使用 sparse checkout 下载所需源码区域，保留完整 Git 来源信息及上游许可。
-源码位于技能内的 `assets/upstream/<source-id>/`，不运行上游安装/构建脚本。
+这会补齐 `upstreams.json` 中的 **15 个来源**：shadcn/ui、Radix Primitives、HeroUI、React Bits、
+Magic UI、Aceternity UI、Lucide、Morphicons、Motion、Tailwind CSS、react-resizable-panels、
+dnd-kit、Zustand、TanStack Query、Recharts。
+其中 14 个使用固定 commit 的 Git sparse checkout；Aceternity 使用官方公开注册表的逐文件 SHA-256 快照，
+包含 114 个公开 `registry:ui` 条目的原 JSON 和实际提取源码，不下载 blocks 或付费 templates。
+源码位于技能内的 `assets/upstream/<source-id>/`，保留来源与许可证据，不运行上游安装/构建脚本。
 可以用 `--source heroui` 等参数限制操作范围。
 
 下载目录由脚本相对技能位置解析，是 Git 忽略的独立上游 checkout，不混入本仓库提交。
-公开的锁定清单与脚本使其他使用者可以取得相同源码；校验会检查 origin、HEAD、
-本地修改和关键源码/许可文件。离线且未取得源码时，应明确标注未核验，不能冒称官方实现。
+公开的锁定清单与脚本使其他使用者可以按相同版本获取源码；校验检查 Git origin、HEAD、本地修改、
+关键文件，或注册表原文哈希及全部提取源码。若注册表远端已经变化且缓存缺失，获取会失败，
+需要维护者明确更新快照，不能保证上游永久保留旧内容。离线且未取得源码时不能冒称官方实现。
 
 这些快照供源码核验，不意味着应安装开发分支依赖或升级现有项目。
 项目采用其他版本时，应先获取与实际安装版本匹配的官方 tag/commit，并记录证据。
 详细流程见 [source-policy.md](skills/minimal-product-ui/references/source-policy.md)。
+
+使用组件前必须先读工作流和选型矩阵，再校验并查看对应实现，例如在技能目录执行：
+
+```sh
+python scripts/ui_sources.py inspect --source morphicons --file src/react/index.tsx
+python scripts/ui_sources.py inspect --source aceternity-ui --component sidebar
+```
+
+下载的是参考源码，不是在业务项目安装 15 套依赖；当前项目需要哪个能力才选择哪个来源。
 
 ## 校验
 
@@ -104,5 +118,17 @@ Magic UI、Aceternity UI；其他生态工具按技能中的适用条件使用�
 不把第三方整库或演示站重新分发为本技能的一部分。当前只读核验无需创建额外 fork；
 需要维护上游改动时，再按组件、版本、许可与维护目标创建独立 fork。
 采用的源码应记录来源/版本/改动并保留适用声明，不能把别人的代码换上本仓库的许可。
-尤其注意 React Bits 的 MIT + Commons Clause 附加限制，以及 HeroUI 不同版本和文件的许可核对。
+尤其注意 React Bits 的 MIT + Commons Clause 附加限制、Aceternity 的逐项使用/再分发限制、
+Lucide 的 ISC/Feather 衍生图标 MIT 声明，以及 HeroUI 不同版本和文件的许可核对。
 查阅文档不需要额外注册 MCP 或安装第三方 skills。
+
+## 更新注册表快照
+
+仅在明确维护本技能时，在技能目录执行：
+
+```sh
+python scripts/ui_sources.py refresh-registry --source aceternity-ui
+```
+
+命令创建新快照并生成内容锁，不覆盖旧缓存；发布前仍需检查源码、依赖与许可变化。
+Git 来源的更新也需要明确选择新 commit 并验证，普通项目使用不能自动追踪上游 HEAD。

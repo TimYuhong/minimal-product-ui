@@ -47,7 +47,9 @@
 
 ## 与本技能一起执行
 
-- 保持极简纯白与深色的默认起点，随后按具体功能和使用体验微调；本次用户明确方向优先。
+- 根据产品、既有设计语言和实际问题选择视觉方向；纯白/深色是可选基线，不是原文要求的唯一表达。
+  用 [组件决策](patterns-and-components.md#component-decision) 落实主动复用与选型，
+  用 [视觉审查](lessons-and-acceptance.md#visual-review) 检查最终效果。
 - 原文中的“推荐”表示候选，不要求全部安装、迁移现有技术栈或重复引入相似库。
   后续补充的 HeroUI、React Bits 仍按各自职责与使用边界参与选型。
 - 原文保留 `react-resizable-panel` 的写法。实施可调分栏前核对准确包名、版本和官方 API；

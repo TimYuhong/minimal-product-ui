@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import os
 from pathlib import Path
 import re
@@ -11,6 +12,37 @@ import yaml
 
 
 DEFAULT_SKILL = Path(__file__).resolve().parents[1] / "skills" / "minimal-product-ui"
+
+
+def markdown_anchors(content: str) -> set[str]:
+    """Resolve package ATX headings and explicit HTML IDs, ignoring fenced examples."""
+    anchors: set[str] = set()
+    heading_ids: set[str] = set()
+    fence = ""
+    for line in content.splitlines():
+        marker = re.match(r"^ {0,3}(`{3,}|~{3,})(.*)$", line)
+        if fence:
+            if marker and marker[1][0] == fence[0] and len(marker[1]) >= len(fence) and not marker[2].strip():
+                fence = ""
+            continue
+        if marker:
+            fence = marker[1]
+            continue
+        anchors.update(re.findall(r'''<[A-Za-z][^>]*\sid\s*=\s*["']([^"']+)["']''', line))
+        heading = re.match(r"^ {0,3}#{1,6}\s+(.+?)\s*$", line)
+        if not heading:
+            continue
+        title = re.sub(r"\s+#+\s*$", "", heading[1])
+        title = re.sub(r"!?\[([^\]]*)\]\([^)]*\)", r"\1", title)
+        title = html.unescape(re.sub(r"<[^>]*>", "", title))
+        slug = re.sub(r"[^\w\- ]", "", title.lower()).replace(" ", "-")
+        anchor, suffix = slug, 0
+        while anchor in heading_ids:
+            suffix += 1
+            anchor = f"{slug}-{suffix}"
+        heading_ids.add(anchor)
+        anchors.add(anchor)
+    return anchors
 
 
 def validate_skill(directory: Path) -> list[str]:
@@ -57,11 +89,20 @@ def validate_skill(directory: Path) -> list[str]:
         for target in re.findall(r"\]\(([^)\n]+)\)", content):
             target = target.strip().removeprefix("<").removesuffix(">")
             parsed = urlsplit(target)
-            if parsed.scheme or parsed.netloc or not parsed.path:
+            if parsed.scheme or parsed.netloc:
                 continue
-            destination = (document.parent / unquote(parsed.path)).resolve()
+            destination = (document.parent / unquote(parsed.path)).resolve() if parsed.path else document.resolve()
             if not destination.is_relative_to(root) or not destination.is_file():
                 errors.append(f"Broken or out-of-package link in {document.relative_to(root)}: {target}")
+                continue
+            if parsed.fragment and destination.suffix.lower() == ".md":
+                try:
+                    anchors = markdown_anchors(destination.read_text(encoding="utf-8"))
+                except UnicodeError:
+                    errors.append(f"Linked document {destination.relative_to(root)} must be UTF-8")
+                    continue
+                if unquote(parsed.fragment) not in anchors:
+                    errors.append(f"Broken local anchor in {document.relative_to(root)}: {target}")
 
     metadata = root / "agents" / "openai.yaml"
     if metadata.is_file():
@@ -93,7 +134,7 @@ def main() -> int:
         for error in errors:
             print(f"FAIL: {error}")
         return 1
-    print("PASS: skill frontmatter, local references and UI metadata")
+    print("PASS: skill frontmatter, local references/anchors and UI metadata")
     return 0
 
 

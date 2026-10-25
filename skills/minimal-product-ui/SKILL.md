@@ -1,86 +1,79 @@
 ---
 name: minimal-product-ui
 description: >-
-  Design or refine React/Next.js interfaces with a minimal pure-white and dark baseline, mature source-controlled components, and restrained interaction. Use for 极简 React UI、清爽轻量页面、HeroUI 表单与管理后台、React 液态玻璃局部效果，以及减少 AI 模板感的界面调整。Adapt to project functions and user experience without imposing a template. Not for backend-only changes, non-React framework design, branding campaigns, or unrelated visual artifacts.
+  Design or refine React/Next.js product interfaces by identifying UI problems, actively selecting mature source-controlled components, and reviewing rendered visual and interaction quality. Use for React 页面设计、工具与管理后台、组件选型、视觉层次与交互优化，以及明确要求的极简界面。Adapt to the product, existing design system and requested scope without imposing a style. Not for backend-only changes, non-React framework design, branding campaigns, or unrelated visual artifacts.
 ---
 
-# 极简产品 UI
+# 产品 UI 设计工作流
 
-默认先做好极简纯白与深色，再根据项目功能、信息密度和使用体验微调。
-极简指降低认知负担，不是删掉功能、交互反馈或无障碍支持。
-这是用户的可维护设计基线，不是一个必须套到所有项目的页面模板。
-适用范围为 React/Next.js 生态，不将其他框架的 UI 方案纳入默认选型。
+根据产品定位、真实任务、现有设计语言和用户需求决定视觉表达，追求简洁、现代与可维护。
+简洁指降低认知负担，不是页面单薄、缺少视觉焦点或删掉功能与反馈。
+纯白与深色是可选基线，不强制黑白灰、卡片、渐变、玻璃或背景特效。
+适用范围为 React/Next.js；不擅自迁移其他框架。
 
 ## 设计决策顺序
 
 在系统、项目与授权约束内，优先遵循：本次用户明确要求、既有功能与设计契约、
-本技能默认基线、其他设计资料建议。参考图、品牌色或已批准方案可以覆盖默认视觉。
-不要让设计数据库的推荐替用户做决定；不依赖或重新安装已被用户拒绝的 ui-styling。
+基于证据的界面问题与组件收益、可选视觉基线、其他设计资料建议。
+既有设计系统是起点；新项目从用途和内容提出合适方向，不要求用户先报组件名称。
+外部案例是候选资料，不是模板或安装授权；不依赖或重新安装已被用户拒绝的 ui-styling。
 
 ## 先理解，再设计
 
-每次 React/Next.js 界面设计、组件选型或交互调整，先阅读
-[工作流](references/workflow.md)。按实际需求选择来源，再校验并阅读对应实现；
-本地有全部源码不等于项目需要安装全部依赖，也不等于可以跳过工作流。
+每次 UI 工作先阅读 [工作流](references/workflow.md)，按任务范围执行问题识别、
+组件发现、源码核验、实现与验收。局部修改只检查受影响区域，不借机重做整页。
 
 新建界面、整页调整或进行前端选型时，先阅读用户提供的
 [前端工程提示词](references/frontend-brief.md)，遵循其中的复用、统一设计语言、
 最少必要依赖与功能/构建验证要求。推荐库按需选择，不是全量安装清单。
 
-1. 检查实际页面、路由、组件、样式变量、依赖及测试。先找可复用实现，
-   不因用户列了一串技术栈就全装；如果实际项目不是 React，先说明不匹配，不擅自迁移。
-2. 明确主要任务、输入输出、关键状态及破坏性操作。用户要求一行粘贴、
-   特定导出格式或现有批量行为时，把它们作为功能契约保留。
-3. 新设计或大改前，用几句话交代页面骨架、白/深双主题、组件选择及范围。
-   方向会实质影响结果且用户尚未明确时，先问一个具体问题再改。
-   本技能的纯白/深色起点已经明确，不必反复询问；窄范围修改直接执行，
-   不借机重新设计整页。不要先做完一个自选模板再让用户接受。
-4. 实现视觉前阅读 [visual-baseline.md](references/visual-baseline.md)。
-   采用或修改库组件前，阅读 [source-policy.md](references/source-policy.md)，取得并核验真实源码；
-   不允许仅凭库名、记忆或 README 想象组件 API。
-   首次建页、整页重做或用户反馈“文字多/AI 味”时，同时阅读
-   [lessons-and-acceptance.md](references/lessons-and-acceptance.md)。
-   需要选组件、后台布局或较复杂交互时，再阅读
-   [patterns-and-components.md](references/patterns-and-components.md)。
-   准备采用 HeroUI 时，进一步阅读 [heroui.md](references/heroui.md)，核对其实际主版本。
-   准备采用 React Bits 组件时，阅读 [react-bits.md](references/react-bits.md)，先核对许可与依赖成本。
-   用户指定液态玻璃效果时，阅读 [liquid-glass-react.md](references/liquid-glass-react.md)，
-   核验 `liquid-glass-react` 固定源码、浏览器边界与实际组件语义后选用。
+按任务读取专项参考，不一次加载所有上游源码：
+
+- 实现视觉前读 [visual-baseline.md](references/visual-baseline.md)：设计方向、层次、主题与反馈。
+- 需要新建页面、改善视觉或选组件时，读
+  [组件决策](references/patterns-and-components.md#component-decision)：主动查找、比较和组合。
+- 采用或修改库组件前读 [source-policy.md](references/source-policy.md)，核验真实源码、版本与许可。
+  采用 HeroUI、React Bits、用户指定的液态玻璃时，再分别读
+  [heroui.md](references/heroui.md)、[react-bits.md](references/react-bits.md)、
+  [liquid-glass-react.md](references/liquid-glass-react.md)。
+- 新建页面或明显视觉重构，在实现前和完成后使用
+  [视觉审查闭环](references/lessons-and-acceptance.md#visual-review)；局部修改选受影响项。
 
 ## 页面内容与结构
 
-- 先呈现主要输入、当前操作和结果。简单工具无需品牌导航、侧栏、Hero 或大统计区；
+- 先呈现页面的核心任务/内容及关键状态；工具页以输入、操作和结果为主。简单工具通常无需品牌导航、侧栏、Hero 或大统计区；
   管理后台也不能为“极简”藏掉必需的导航、筛选与数据。
 - 不默认添加宣传标题、虚构品牌、口号、三栏卖点、重复格式说明、占位指标、
   装饰性流程步骤、隐私/安全背书或技术实现介绍。
 - 文案只回答此刻的问题：这是什么、填什么、正在发生什么、出错后怎么做。
-  一个可见字段标签、一个必要格式示例通常足够；空状态通常一句话。
+  标签、必要示例、空状态和结果说明以完成任务为准，不以固定字数或行数限制有效内容。
 - 说明采用按需呈现：限制靠近对应输入，错误靠近发生处，删除/不可逆风险在操作前确认。
   用户要求删除常驻说明，不等于删除实际安全保护、必要风险告知或法定内容。
 - 每个操作阶段有清晰主操作，次要动作降低视觉权重。不要为了对称塞满卡片，
   也不要以大片无用途留白假装简洁。
 
-## 组件与工程
+## 组件与工程边界
 
 - 优先复用项目已存在的成熟组件。React 新增基础交互可选 shadcn/ui + Radix UI，
   或 HeroUI；按现有依赖、组件覆盖、可维护性选主方案，不默认叠加完整组件库。
-  图标优先既有 Lucide；Tailwind 与现有样式方式保持一致。
+  图标优先复用现有体系，缺口再考虑 Lucide；Tailwind 与现有样式方式保持一致。
 - 若使用 shadcn/ui，使用可核验的官方源码/注册表或项目已有组件，保留许可，
   记录必要定制。不要把自写“shadcn 风格”组件冒称官方组件。
 - 缺少对应源码时使用 `scripts/ui_sources.py fetch` 下载锁定上游，再 `verify`；
   查阅具体组件、类型和样式。核验版本不匹配或无法下载时明确说明，不伪造官方实现。
-- 区分基础组件来源、主题 token、业务组合与整页布局；官方组件不代表官方默认整页。
-- HeroUI 是可选 React 主组件库，不只是装饰样式参考；
-  选择后仍按本技能调整成简洁白/深主题。React Bits 是可选局部交互/动效源码参考，
-  不因为它被列入候选就添加装饰背景或替代已有无障碍原语。各库按真实需求选用，详见组件参考。
+- 按组件决策区分基础原语、视觉增强、动画反馈、业务组合和页面布局。
+  主动评估 Magic UI、Aceternity UI、React Bits 等现有来源能否解决已识别问题；
+  无需等用户点名，收益不足则不采用，不把组件演示页变成项目模板。
+- HeroUI 可作为 React 主组件方案，不只是装饰参考；选用后接入项目设计语言。
+  视觉组件不替代无障碍原语，各层可组合，但不叠加职责重复的完整组件库。
 - Morphicons 是可选的图标状态变形，不承担按钮语义、焦点管理或通用页面动画。
   采用前阅读组件参考中的 Morphicons 小节，核对图标数据格式并跟随系统减少动态效果。
 - 液态玻璃可使用已锁定的 `rdev/liquid-glass-react` 源码；只在用户要求的部位采用，
   保留现有 Dialog、按钮和焦点语义，按专项参考处理降级，不自动替换整页主题。
 - 集中管理颜色、字体、间距、圆角和反馈时长。轻/深使用同一语义变量与组件结构，
   不复制两套业务页面，不叠加第二个功能相同的库。
-- 新页面默认只提供纯白、深色两种外观；不要自行增加紧凑、奶油、玻璃等第三风格。
-  既有项目的主题行为按任务范围保留。移除模式时同步清理类型、入口、样式、
+- 外观方向与主题模式分开决策，支持浅色（含纯白）与深色，不强加某个配色或额外模式。
+  既有项目的主题行为按任务范围保留，细节见视觉基线。移除模式时同步清理类型、入口、样式、
   持久化读取与初始化脚本，并让旧偏好安全回退。
 
 ## 交互与安全边界
@@ -89,7 +82,8 @@ description: >-
   手机输入字号通常至少 16px；不能靠缩小控件来显得轻量。
 - 覆盖加载、禁用、成功、错误、空状态与取消/重试的实际语义，防止重复提交。
   危险操作需要明确确认；后果未知的请求不能因 UI 重试而盲目重放。
-- 动效只服务操作反馈，优先简单 CSS；支持减少动态效果，不让动效阻塞输入。
+- 动效可服务反馈、空间关系和内容理解；简单效果优先 CSS，复杂编排按需使用既有运行时。
+  支持减少动态效果，不让动效阻塞输入或代替真实任务状态。
 - 主题覆盖按钮、输入、弹窗、提示、焦点、悬停及禁用，不只是换背景色。
   保持既有 CSP；主题初始化优先兼容现有资源与脚本策略，不为主题放宽安全策略。
 - 不因美化更改认证、存储或服务端权限。不把访问令牌、真实凭证写进前端、
@@ -97,14 +91,13 @@ description: >-
 
 ## 验证并停止
 
-- 运行受影响测试与构建；浏览器检查主要路径、白/深主题、手机和桌面、键盘与焦点。
-  异步渲染、数据与弹窗动画要等到可观察状态成立，再断言或截图。
-- 实际查看截图或渲染结果；DOM 文本、无报错、图片元数据不等于完成视觉检查。
-  核对对比度、信息层级、文本密度、溢出和可点击范围。
+- 运行受影响测试与构建，按 [验收标准](references/lessons-and-acceptance.md) 检查功能、
+  响应式、主题、无障碍与状态。新建/视觉重构须尽可能运行页面，查看真实截图，
+  将有依据的问题修复后在相同条件复验；仅凭代码、DOM 或构建通过不能称为视觉验证。
 - 明确区分构建通过、模拟接口验证、真实服务验证和仍未验证的部分。
   不以演示数据证明真实后端成功，不因验证 UI 擅自操作用户账号。
-- 标准详见 [lessons-and-acceptance.md](references/lessons-and-acceptance.md)。
-  达标后停止扩展：不追加“好看但无关”的组件、文案、库或重构。
+- 达标或已无范围内高价值问题时停止；如有阻碍，如实交代而不冒称通过。
+  不追加“好看但无关”的组件、文案、库或重构。
 - 仅清理本任务已验证无用的临时文件与缓存，保留源码、配置和必要证据。
   简短交付改了什么、怎样查看、验证结果与未覆盖范围，不写设计宣传稿。
 
@@ -115,4 +108,4 @@ description: >-
 只在用户要求维护本技能时更新规则。将真实复现的问题写成“触发条件—处理—验收”，
 不要把一次项目偏好扩展成所有项目的硬约束，也不要追加与设计无关的运行历史。
 
-调用例：`$minimal-product-ui 检查当前项目，用极简纯白与深色优化界面，保留现有功能和输入输出格式。`
+调用例：`$minimal-product-ui 检查当前页面的层次与交互，沿用产品设计语言，主动评估成熟组件并验证页面质量，保留现有功能与范围。`

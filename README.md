@@ -1,30 +1,32 @@
 # Minimal Product UI
 
-面向 React/Next.js 的个人 UI 设计技能。先做好极简纯白与深色，再根据功能和体验微调。
-不固定套模板，不堆首页说明，不为视觉效果重复引入组件库。
+面向 React/Next.js 的产品 UI 工作流：从界面问题出发，主动发现和比较成熟组件，
+根据产品定位、既有设计语言与用户需求改善层次和交互，再检查实际页面质量。
+保持简洁、现代与可维护；极简纯白/深色是可选基线，不是所有项目的固定风格。
 
 ## 使用与维护
 
 技能入口：[SKILL.md](skills/minimal-product-ui/SKILL.md)。在 Codex 中调用：
 
 ```text
-$minimal-product-ui 检查当前 React 项目，用极简纯白和深色优化界面，保留现有功能与输入输出格式。
+$minimal-product-ui 检查当前 React 项目的层次与交互，沿用产品设计语言，主动评估成熟组件并验证页面质量，保留现有功能与输入输出格式。
 ```
 
 主要文件：
 
-- `SKILL.md`：工作流程、默认原则和执行边界。
+- `SKILL.md`：能力入口、参考路由和执行边界。
 - `references/workflow.md`：每次 UI 工作先读的选型、源码证据、实现与验收流程。
 - `references/frontend-brief.md`：用户提供的完整前端工程提示词与使用说明。
-- `references/visual-baseline.md`：双主题、排版、空间和反馈基线。
-- `references/patterns-and-components.md`：React 生态按需选型。
+- `references/visual-baseline.md`：设计方向、层次、空间、主题及可选纯白/深色基线。
+- `references/patterns-and-components.md`：主动发现、比较、取舍与按职责组合组件。
 - `references/heroui.md`、`react-bits.md`：版本、集成与许可注意事项。
 - `references/liquid-glass-react.md`：液态玻璃固定源码、参数、浏览器兼容与无障碍组合方式。
-- `references/lessons-and-acceptance.md`：设计教训及验收情境。
+- `references/lessons-and-acceptance.md`：真实截图审查、修复复验、停止条件及 A–F 情境判定。
 - `references/source-policy.md`、`upstreams.json`：源码核验流程与锁定提交。
 
 首次获取可使用 `git clone https://github.com/TimYuhong/minimal-product-ui.git`。
-维护时先 `git pull --ff-only`，编辑技能及所需参考，校验后提交并 `git push`。
+维护时先检查 Git 状态并保留已有修改；需要同步远端时再 `git pull --ff-only`。
+编辑技能及所需参考并校验；提交、推送和发布仅在用户明确要求时执行。
 不要强推覆盖远端变更，也不要把账号凭证、项目私有配置或业务输出放入仓库。
 
 ## 安装
@@ -110,8 +112,12 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-本地校验检查技能结构、YAML 元数据、内部引用、公开文件中的个人绝对路径与校验器回归用例。
-结构校验不证明实际 UI 设计、浏览器行为或真实业务成功；行为验收见技能内的情境清单。
+本地校验检查技能结构、YAML 元数据、内部引用及锚点、公开文件中的个人绝对路径与校验器回归用例。
+维护时还需按 [A–F 情境](skills/minimal-product-ui/references/lessons-and-acceptance.md#scenario-checks)
+记录规则走读和实际行为各自的结果与证据，不能以结构校验替代设计判断。
+新建页面/明显视觉重构按同一文件的视觉闭环运行、查看真实截图、修复并复验；
+浏览器不可用时明确标为未完成视觉验证，构建或 mock 不能证明页面视觉/真实业务通过。
+审查方法借鉴 taste-skills 的四项诊断思想（固定来源和取舍见验收参考），无新增外部 Skill 依赖。
 
 自动校验模板位于 `maintenance/validate-workflow.yml`，当前尚未启用 GitHub Actions。
 需要具备工作流写入权限时，再将模板放到 `.github/workflows/validate.yml` 并提交。

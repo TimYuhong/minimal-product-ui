@@ -1,4 +1,4 @@
 interface:
-  display_name: "极简产品 UI"
-  short_description: "React 极简纯白与深色 UI，按需结合 shadcn、HeroUI 与 React Bits"
-  default_prompt: "使用 $minimal-product-ui，先检查现有 React/Next.js 项目，以极简纯白和深色建立功能完整的界面，再按实际功能和使用体验做小幅调整。"
+  display_name: "产品 UI 设计工作流"
+  short_description: "React UI 工作流：适应产品设计语言，主动选用成熟组件并审查实际页面质量"
+  default_prompt: "使用 $minimal-product-ui，检查当前 React/Next.js 项目的界面问题与设计语言，主动评估现有和上游组件，改善层次与交互并验证实际页面质量，保留功能契约和修改范围。"

@@ -47,6 +47,7 @@
 | Aceternity UI | aceternity-ui | 锁中指定的 `snapshots/<snapshot>/items/<component>/`，保留原路径 |
 | Lucide React / 图标数据 | lucide | `packages/lucide-react/src/`、`packages/lucide/src/`、`icons/` |
 | Morphicons | morphicons | `src/react/index.tsx`、`src/core/types.ts`、`src/dom/` |
+| Liquid Glass React | liquid-glass-react | `src/index.tsx`、`src/shader-utils.ts`、`src/utils.ts`、`liquid-glass-example/src/` |
 | Motion | motion | `packages/motion/src/`、`packages/framer-motion/src/`、`packages/motion-dom/src/` |
 | Tailwind CSS | tailwindcss | `packages/tailwindcss/src/`、`packages/@tailwindcss-vite/src/` |
 | react-resizable-panels | react-resizable-panels | `lib/index.ts`、`lib/components/` |

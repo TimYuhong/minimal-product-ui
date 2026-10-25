@@ -17,6 +17,7 @@
 
 采用 HeroUI 或 React Bits 时，再读各自的专项参考；涉及主题和视觉时读取
 [视觉基线](visual-baseline.md)。需要补充装饰或动效时先核对用户意图，不能自动加入背景特效。
+用户明确要求液态玻璃时，读取 [liquid-glass-react.md](liquid-glass-react.md)，先判断局部材质与现有交互组件的组合方式。
 
 ## 3. 使用源码前的必过检查
 

@@ -19,6 +19,7 @@ $minimal-product-ui 检查当前 React 项目，用极简纯白和深色优化�
 - `references/visual-baseline.md`：双主题、排版、空间和反馈基线。
 - `references/patterns-and-components.md`：React 生态按需选型。
 - `references/heroui.md`、`react-bits.md`：版本、集成与许可注意事项。
+- `references/liquid-glass-react.md`：液态玻璃固定源码、参数、浏览器兼容与无障碍组合方式。
 - `references/lessons-and-acceptance.md`：设计教训及验收情境。
 - `references/source-policy.md`、`upstreams.json`：源码核验流程与锁定提交。
 
@@ -65,10 +66,10 @@ python skills/minimal-product-ui/scripts/ui_sources.py fetch
 python skills/minimal-product-ui/scripts/ui_sources.py verify
 ```
 
-这会补齐 `upstreams.json` 中的 **15 个来源**：shadcn/ui、Radix Primitives、HeroUI、React Bits、
+这会补齐 `upstreams.json` 中的 **16 个来源**：shadcn/ui、Radix Primitives、HeroUI、React Bits、
 Magic UI、Aceternity UI、Lucide、Morphicons、Motion、Tailwind CSS、react-resizable-panels、
-dnd-kit、Zustand、TanStack Query、Recharts。
-其中 14 个使用固定 commit 的 Git sparse checkout；Aceternity 使用官方公开注册表的逐文件 SHA-256 快照，
+dnd-kit、Zustand、TanStack Query、Recharts、Liquid Glass React。
+其中 15 个使用固定 commit 的 Git sparse checkout；Aceternity 使用官方公开注册表的逐文件 SHA-256 快照，
 包含 114 个公开 `registry:ui` 条目的原 JSON 和实际提取源码，不下载 blocks 或付费 templates。
 源码位于技能内的 `assets/upstream/<source-id>/`，保留来源与许可证据，不运行上游安装/构建脚本。
 可以用 `--source heroui` 等参数限制操作范围。
@@ -87,9 +88,15 @@ dnd-kit、Zustand、TanStack Query、Recharts。
 ```sh
 python scripts/ui_sources.py inspect --source morphicons --file src/react/index.tsx
 python scripts/ui_sources.py inspect --source aceternity-ui --component sidebar
+python scripts/ui_sources.py inspect --source liquid-glass-react --file src/index.tsx
 ```
 
-下载的是参考源码，不是在业务项目安装 15 套依赖；当前项目需要哪个能力才选择哪个来源。
+下载的是参考源码，不是在业务项目安装 16 套依赖；当前项目需要哪个能力才选择哪个来源。
+
+液态玻璃来源为 [rdev/liquid-glass-react](https://github.com/rdev/liquid-glass-react)，
+源码、示例和 MIT 许可下载到 `skills/minimal-product-ui/assets/upstream/liquid-glass-react/`。
+仅获取这一个来源可使用 `fetch --source liquid-glass-react`，再运行 `verify --source liquid-glass-react`。
+本次登记源码版本为 1.1.1；使用前仍需核对目标项目、实际发布版本和专项参考中的限制。
 
 ## 校验
 

@@ -27,6 +27,7 @@
 | 服务器状态缓存/重取/去重 | `tanstack-query`：需要查询生命周期、失效、缓存或乐观更新时 | 简单请求保留合理的现有实现，敏感数据不默认持久化 |
 | 布局、离场和手势动画 | `motion`：CSS 难以表达的布局/手势/编排；先复用项目已有 Motion/Framer Motion | 不为一个淡入安装动画运行时，不同时安装两套等价入口 |
 | React 局部视觉组件 | `react-bits`：明确要求的局部交互或动效，先查成本和许可 | 不整体搬入演示站，不默认 WebGL/粒子背景 |
+| 液态玻璃材质 | `liquid-glass-react`：用户明确选择折射、边缘高光和弹性效果时，先阅读专项参考 | 不替代 Dialog/按钮语义，不自动叠加其他玻璃实现或改整页主题 |
 | 精选视觉增强 | `magic-ui`：已完成可用界面后，需要具体的轻量视觉反馈或展示组件时 | 不因为库提供动画卡片就重做工具页面 |
 | 特定视觉构图/组件 | `aceternity-ui`：用户明确选择相关样式或某个公开组件确实适用时 | 不套营销模板，不下载付费 blocks/templates，不假定全部 MIT |
 | 用户需要可调分栏 | `react-resizable-panels`：需要拖动分隔条、尺寸约束或布局恢复时 | 静态两列用 CSS Grid 即可 |
@@ -68,6 +69,13 @@
 - 缓存供本地核验，不重分发组件源码包。付费 blocks、templates 和未取得授权的代码不属于下载范围。
 - 普通任务不刷新哈希以绕过失败。需要更新快照时，维护者显式运行
   `python scripts/ui_sources.py refresh-registry --source aceternity-ui`，检查变化和许可后再发布锁定清单。
+
+## Liquid Glass React：可选液态玻璃
+
+官方来源为 `rdev/liquid-glass-react`，默认导出 `LiquidGlass`，MIT 许可。
+实现、实际参数与边界见 [liquid-glass-react.md](liquid-glass-react.md)。
+SVG 折射、背景模糊、边缘高光和弹性分别控制；与现有 React Bits 玻璃适配比较后选择一种局部方案。
+采用前检查 SSR、样式工具类、居中 transform、真实背景及焦点组合，不直接套用演示站。
 
 ## HeroUI 的使用边界
 

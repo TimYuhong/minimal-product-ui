@@ -1,7 +1,7 @@
 ---
 name: minimal-product-ui
 description: >-
-  Design or refine React/Next.js interfaces with a minimal pure-white and dark baseline, mature source-controlled components, and restrained interaction. Use for 极简 React UI、清爽轻量页面、HeroUI 表单与管理后台，以及减少 AI 模板感的界面调整。Adapt to project functions and user experience without imposing a template. Not for backend-only changes, non-React framework design, branding campaigns, or unrelated visual artifacts.
+  Design or refine React/Next.js interfaces with a minimal pure-white and dark baseline, mature source-controlled components, and restrained interaction. Use for 极简 React UI、清爽轻量页面、HeroUI 表单与管理后台、React 液态玻璃局部效果，以及减少 AI 模板感的界面调整。Adapt to project functions and user experience without imposing a template. Not for backend-only changes, non-React framework design, branding campaigns, or unrelated visual artifacts.
 ---
 
 # 极简产品 UI
@@ -44,6 +44,8 @@ description: >-
    [patterns-and-components.md](references/patterns-and-components.md)。
    准备采用 HeroUI 时，进一步阅读 [heroui.md](references/heroui.md)，核对其实际主版本。
    准备采用 React Bits 组件时，阅读 [react-bits.md](references/react-bits.md)，先核对许可与依赖成本。
+   用户指定液态玻璃效果时，阅读 [liquid-glass-react.md](references/liquid-glass-react.md)，
+   核验 `liquid-glass-react` 固定源码、浏览器边界与实际组件语义后选用。
 
 ## 页面内容与结构
 
@@ -73,6 +75,8 @@ description: >-
   不因为它被列入候选就添加装饰背景或替代已有无障碍原语。各库按真实需求选用，详见组件参考。
 - Morphicons 是可选的图标状态变形，不承担按钮语义、焦点管理或通用页面动画。
   采用前阅读组件参考中的 Morphicons 小节，核对图标数据格式并跟随系统减少动态效果。
+- 液态玻璃可使用已锁定的 `rdev/liquid-glass-react` 源码；只在用户要求的部位采用，
+  保留现有 Dialog、按钮和焦点语义，按专项参考处理降级，不自动替换整页主题。
 - 集中管理颜色、字体、间距、圆角和反馈时长。轻/深使用同一语义变量与组件结构，
   不复制两套业务页面，不叠加第二个功能相同的库。
 - 新页面默认只提供纯白、深色两种外观；不要自行增加紧凑、奶油、玻璃等第三风格。

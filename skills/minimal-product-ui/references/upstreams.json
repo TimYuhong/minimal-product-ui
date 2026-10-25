@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "verified_on": "2026-10-24",
+  "verified_on": "2026-10-25",
   "sources": [
     {
       "id": "shadcn-ui",
@@ -254,6 +254,27 @@
         "src/react/index.tsx",
         "src/dom/index.ts",
         "src/core/types.ts"
+      ],
+      "license_files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "liquid-glass-react",
+      "repository": "https://github.com/rdev/liquid-glass-react.git",
+      "ref": "master",
+      "commit": "ac48eab18d1f7f444ae30002d240cae29c863a21",
+      "sparse_paths": [
+        "src",
+        "liquid-glass-example/src"
+      ],
+      "required_files": [
+        "src/index.tsx",
+        "src/shader-utils.ts",
+        "src/utils.ts",
+        "package.json",
+        "README.md",
+        "liquid-glass-example/src/pages/index.tsx"
       ],
       "license_files": [
         "LICENSE"

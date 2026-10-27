@@ -3,6 +3,7 @@
 面向 React/Next.js 的产品 UI 工作流：从界面问题出发，主动发现和比较成熟组件，
 根据产品定位、既有设计语言与用户需求改善层次和交互，再检查实际页面质量。
 保持简洁、现代与可维护；极简纯白/深色是可选基线，不是所有项目的固定风格。
+局部任务走快路径；整体改造先明确布局取舍与验收场景，按正确完成任务的整体成本评价效率。
 
 ## 使用与维护
 
@@ -15,13 +16,13 @@ $minimal-product-ui 检查当前 React 项目的层次与交互，沿用产品�
 主要文件：
 
 - `SKILL.md`：能力入口、参考路由和执行边界。
-- `references/workflow.md`：每次 UI 工作先读的选型、源码证据、实现与验收流程。
+- `references/workflow.md`：局部快路径与整体设计流程，串联任务基线、布局取舍、按需选型和验收。
 - `references/frontend-brief.md`：用户提供的完整前端工程提示词与使用说明。
 - `references/visual-baseline.md`：设计方向、层次、空间、主题及可选纯白/深色基线。
 - `references/patterns-and-components.md`：主动发现、比较、取舍与按职责组合组件。
 - `references/heroui.md`、`react-bits.md`：版本、集成与许可注意事项。
 - `references/liquid-glass-react.md`：液态玻璃固定源码、参数、浏览器兼容与无障碍组合方式。
-- `references/lessons-and-acceptance.md`：真实截图审查、修复复验、停止条件及 A–F 情境判定。
+- `references/lessons-and-acceptance.md`：任务整体成本、具体场景、真实视觉审查、停止条件及 A–F 情境判定。
 - `references/source-policy.md`、`upstreams.json`：源码核验流程与锁定提交。
 
 首次获取可使用 `git clone https://github.com/TimYuhong/minimal-product-ui.git`。
@@ -60,21 +61,27 @@ test ! -e "$skills_dir/minimal-product-ui" && test ! -L "$skills_dir/minimal-pro
 
 ## 下载真实 UI 源码
 
-本技能不是“记住库名然后自由发挥”。开始采用组件前，必须读取匹配版本的真实源码、
-类型、样式与许可，记录来源。Git 和 Python 3.10+ 可用后，在仓库根目录运行：
+先按任务和现有项目筛选候选；准备采用或实质定制组件时，读取匹配版本的真实源码、
+类型、样式与许可，记录来源。Git 和 Python 3.10+ 可用后，按需选择来源，例如在仓库根目录运行：
 
 ```sh
-python skills/minimal-product-ui/scripts/ui_sources.py fetch
-python skills/minimal-product-ui/scripts/ui_sources.py verify
+python skills/minimal-product-ui/scripts/ui_sources.py fetch --source shadcn-ui
+python skills/minimal-product-ui/scripts/ui_sources.py verify --source shadcn-ui
 ```
 
-这会补齐 `upstreams.json` 中的 **16 个来源**：shadcn/ui、Radix Primitives、HeroUI、React Bits、
+上面的命令只处理 shadcn/ui；可重复 `--source` 选择多个需要的库。
+`upstreams.json` 提供 **16 个可选来源**：shadcn/ui、Radix Primitives、HeroUI、React Bits、
 Magic UI、Aceternity UI、Lucide、Morphicons、Motion、Tailwind CSS、react-resizable-panels、
 dnd-kit、Zustand、TanStack Query、Recharts、Liquid Glass React。
 其中 15 个使用固定 commit 的 Git sparse checkout；Aceternity 使用官方公开注册表的逐文件 SHA-256 快照，
 包含 114 个公开 `registry:ui` 条目的原 JSON 和实际提取源码，不下载 blocks 或付费 templates。
 源码位于技能内的 `assets/upstream/<source-id>/`，保留来源与许可证据，不运行上游安装/构建脚本。
-可以用 `--source heroui` 等参数限制操作范围。
+按需粒度为来源库；Aceternity 的单组件查看仍先核验该库完整快照，不代表单组件下载。
+
+只有明确进行全库维护时，使用 `fetch --all` 或 `verify --all`。
+`--all` 与 `--source` 互斥；裸 `fetch` / `verify` 现在以用法错误退出，零下载、零缓存修改。
+这是对旧默认行为的有意收紧，旧脚本需补 `--source <id>` 或明确的 `--all`；已有显式选择命令不变。
+`inspect` 与 `refresh-registry` 不支持 `--all`，分别继续要求单来源和 `--source aceternity-ui`。
 
 下载目录由脚本相对技能位置解析，是 Git 忽略的独立上游 checkout，不混入本仓库提交。
 公开的锁定清单与脚本使其他使用者可以按相同版本获取源码；校验检查 Git origin、HEAD、本地修改、
@@ -85,7 +92,7 @@ dnd-kit、Zustand、TanStack Query、Recharts、Liquid Glass React。
 项目采用其他版本时，应先获取与实际安装版本匹配的官方 tag/commit，并记录证据。
 详细流程见 [source-policy.md](skills/minimal-product-ui/references/source-policy.md)。
 
-使用组件前必须先读工作流和选型矩阵，再校验并查看对应实现，例如在技能目录执行：
+初筛后需要深入核验某个候选时，查看对应实现，例如在技能目录执行：
 
 ```sh
 python scripts/ui_sources.py inspect --source morphicons --file src/react/index.tsx
@@ -112,9 +119,10 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-本地校验检查技能结构、YAML 元数据、内部引用及锚点、公开文件中的个人绝对路径与校验器回归用例。
+本地校验检查技能结构、YAML 元数据、内部引用及锚点、公开文件中的个人绝对路径与校验器回归用例；
+CLI 选择测试通过 mock 证明缺省/冲突参数不会触发下载、显式选择只操作指定来源，不依赖网络。
 维护时还需按 [A–F 情境](skills/minimal-product-ui/references/lessons-and-acceptance.md#scenario-checks)
-记录规则走读和实际行为各自的结果与证据，不能以结构校验替代设计判断。
+按改动选择情境并记录规则走读和实际行为各自的结果与证据，不能以结构校验替代设计判断。
 新建页面/明显视觉重构按同一文件的视觉闭环运行、查看真实截图、修复并复验；
 浏览器不可用时明确标为未完成视觉验证，构建或 mock 不能证明页面视觉/真实业务通过。
 审查方法借鉴 taste-skills 的四项诊断思想（固定来源和取舍见验收参考），无新增外部 Skill 依赖。

@@ -295,10 +295,14 @@ def refresh_aceternity() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("operation", choices=("fetch", "verify", "refresh-registry", "inspect"))
-    parser.add_argument("--source", action="append", help="Limit to a named manifest source; repeatable")
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--source", action="append", help="Select a named manifest source; repeatable")
+    selection.add_argument("--all", action="store_true", help="Explicitly select all sources for fetch or verify")
     parser.add_argument("--file", help="Source-relative text file to inspect after verification")
     parser.add_argument("--component", help="Official registry component name to inspect after verification")
     args = parser.parse_args()
+    if args.all and args.operation not in ("fetch", "verify"):
+        parser.error("--all is only supported for fetch or verify")
     try:
         if args.operation == "refresh-registry":
             if args.source != ["aceternity-ui"]:
@@ -306,7 +310,7 @@ def main() -> int:
             refresh_aceternity()
             return 0
         sources = load_sources()
-        selected = set(args.source or (source["id"] for source in sources))
+        selected = {source["id"] for source in sources} if args.all else set(args.source)
         if selected - {source["id"] for source in sources}:
             raise ValueError("Unknown source identifier")
         if args.operation == "inspect" and (len(selected) != 1 or bool(args.file) == bool(args.component)):

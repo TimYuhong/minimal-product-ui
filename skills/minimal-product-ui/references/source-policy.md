@@ -6,7 +6,7 @@
 
 1. 检查目标项目实际包版本、锁文件和已有组件。源码版本需匹配项目；
    本技能的上游快照用于查证，不授权迁移或升级项目。
-2. 若匹配的源码尚未取得，运行本技能的 `scripts/ui_sources.py fetch`。
+2. 对初筛后值得采用/进一步比较的候选，若匹配源码尚未取得，运行 `scripts/ui_sources.py fetch --source <id>`。
    `verify` 成功后，读取要使用的组件实现、类型/导出、样式、必要依赖及许可。
    全部来源的 commit 或注册表哈希位于 [upstreams.json](upstreams.json)。
    当前操作目录不固定时，从正在使用的 SKILL.md 所在目录解析脚本和资源，不硬编码个人路径。
@@ -20,8 +20,9 @@
 
 ## 源码获取与验证
 
-从本技能目录运行 `python scripts/ui_sources.py fetch`，再运行
-`python scripts/ui_sources.py verify`。Git 来源只执行必要的 Git 操作；注册表来源仅下载、校验和提取公开文本，
+从本技能目录运行 `python scripts/ui_sources.py fetch --source <id>`，再运行
+`python scripts/ui_sources.py verify --source <id>`；支持重复 `--source` 选择多个需要的库。
+Git 来源只执行必要的 Git 操作；注册表来源仅下载、校验和提取公开文本，
 不执行 upstream 安装、构建、Hook、MCP 注册或代码生成脚本。
 
 源码保存在本技能相对路径 `assets/upstream/`；每份 checkout 保留自己的 origin、
@@ -57,8 +58,14 @@
 | Recharts | recharts | `src/chart/`、`src/component/`、`src/index.ts` |
 
 只读取与任务相关的组件、类型、样式和许可，不一次加载所有仓库全文。
-`fetch` 默认补齐全部锁定快照，支持重复的 `--source <id>` 只补选中来源；
-它不会在业务项目安装任何 npm 依赖，也不会运行上游安装、构建或 Hook。
+`fetch` / `verify` 必须显式指定 `--source <id>` 或 `--all`；两者互斥，省略时退出并提示用法，
+不会选择来源、下载或更改缓存。`--all` 只用于明确需要全库操作的维护任务；不作为普通 UI 工作的默认步骤。
+既有显式 `--source` 命令保持兼容，旧的裸 `fetch` / `verify` 调用需补选择参数。
+`inspect` 需明确一个来源与 `--file` / `--component` 二选一；`refresh-registry` 仍要求恰好一次
+`--source aceternity-ui`，两者不支持 `--all`。命令不安装项目 npm 依赖或执行上游 Hook。
+
+按需粒度是来源库：Git 保持清单中的 sparse checkout；Aceternity 仍获取/核验所选库的完整锁定快照。
+`inspect --component` 只缩小输出范围，不是逐组件下载。不要误报为只获取了一个组件。
 
 ```sh
 python scripts/ui_sources.py inspect --source morphicons --file src/react/index.tsx

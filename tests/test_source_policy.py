@@ -31,6 +31,192 @@ class PublicPortabilityTests(unittest.TestCase):
         self.assertEqual(portability_errors("skills/minimal-product-ui\n$env:CODEX_HOME\n${CODEX_HOME:-$HOME/.codex}/skills"), [])
 
 
+class SourceSelectionTests(unittest.TestCase):
+    def setUp(self):
+        self.sources = [
+            {"id": "alpha", "commit": "a" * 40},
+            {"id": "beta", "commit": "b" * 40},
+            {"id": "aceternity-ui", "kind": "registry", "version": "registry-fixture"},
+        ]
+        self.mocks = {}
+        for name, options in (
+            ("load_sources", {"return_value": self.sources}),
+            ("fetch_source", {}),
+            ("verify_source", {}),
+            ("refresh_aceternity", {}),
+            ("git", {"side_effect": AssertionError("CLI selection must not run Git")}),
+            ("download_registry", {"side_effect": AssertionError("CLI selection must not use the network")}),
+        ):
+            patcher = patch.object(ui_sources, name, **options)
+            self.mocks[name] = patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def run_cli(self, *arguments):
+        for mocked in self.mocks.values():
+            mocked.reset_mock()
+        output, errors = io.StringIO(), io.StringIO()
+        with patch.object(ui_sources.sys, "argv", ["ui_sources.py", *arguments]), \
+             contextlib.redirect_stdout(output), contextlib.redirect_stderr(errors):
+            try:
+                code = ui_sources.main()
+            except SystemExit as error:
+                code = error.code
+        return code, output.getvalue(), errors.getvalue()
+
+    def assert_no_actions(self):
+        for name in ("fetch_source", "verify_source", "refresh_aceternity", "git", "download_registry"):
+            self.mocks[name].assert_not_called()
+
+    def called_sources(self, operation):
+        return [call.args[0]["id"] for call in self.mocks[f"{operation}_source"].call_args_list]
+
+    def test_bare_operations_require_selection_before_loading_sources(self):
+        for operation in ("fetch", "verify", "inspect", "refresh-registry"):
+            with self.subTest(operation=operation):
+                code, output, errors = self.run_cli(operation)
+                self.assertEqual(code, 2)
+                self.assertEqual(output, "")
+                self.assertIn("usage:", errors)
+                self.mocks["load_sources"].assert_not_called()
+                self.assert_no_actions()
+
+    def test_source_requires_a_value(self):
+        code, _, errors = self.run_cli("fetch", "--source")
+        self.assertEqual(code, 2)
+        self.assertIn("usage:", errors)
+        self.mocks["load_sources"].assert_not_called()
+        self.assert_no_actions()
+
+    def test_explicit_source_only_dispatches_selected_operation(self):
+        for operation in ("fetch", "verify"):
+            with self.subTest(operation=operation):
+                code, output, errors = self.run_cli(operation, "--source", "beta")
+                self.assertEqual(code, 0)
+                self.assertEqual(self.called_sources(operation), ["beta"])
+                other = "verify" if operation == "fetch" else "fetch"
+                self.mocks[f"{other}_source"].assert_not_called()
+                self.mocks["refresh_aceternity"].assert_not_called()
+                self.assertIn("PASS: beta", output)
+                self.assertEqual(errors, "")
+
+    def test_repeated_sources_are_deduplicated_in_manifest_order(self):
+        for operation in ("fetch", "verify"):
+            with self.subTest(operation=operation):
+                code, _, _ = self.run_cli(operation, "--source", "beta", "--source", "alpha", "--source", "beta")
+                self.assertEqual(code, 0)
+                self.assertEqual(self.called_sources(operation), ["alpha", "beta"])
+
+    def test_all_explicitly_dispatches_every_source(self):
+        for operation in ("fetch", "verify"):
+            with self.subTest(operation=operation):
+                code, _, errors = self.run_cli(operation, "--all")
+                self.assertEqual(code, 0)
+                self.assertEqual(self.called_sources(operation), [source["id"] for source in self.sources])
+                other = "verify" if operation == "fetch" else "fetch"
+                self.mocks[f"{other}_source"].assert_not_called()
+                self.mocks["refresh_aceternity"].assert_not_called()
+                self.assertEqual(errors, "")
+
+    def test_all_and_source_are_mutually_exclusive(self):
+        for operation in ("fetch", "verify", "inspect", "refresh-registry"):
+            for selection in (("--all", "--source", "alpha"), ("--source", "alpha", "--all")):
+                with self.subTest(operation=operation, selection=selection):
+                    code, _, errors = self.run_cli(operation, *selection)
+                    self.assertEqual(code, 2)
+                    self.assertIn("usage:", errors)
+                    self.mocks["load_sources"].assert_not_called()
+                    self.assert_no_actions()
+
+    def test_all_is_rejected_for_inspect_and_registry_refresh(self):
+        for operation in ("inspect", "refresh-registry"):
+            with self.subTest(operation=operation):
+                code, _, errors = self.run_cli(operation, "--all")
+                self.assertEqual(code, 2)
+                self.assertIn("--all is only supported for fetch or verify", errors)
+                self.mocks["load_sources"].assert_not_called()
+                self.assert_no_actions()
+
+    def test_unknown_or_mixed_source_ids_fail_before_actions(self):
+        for operation in ("fetch", "verify", "inspect"):
+            for selection in (("--source", "unknown"), ("--source", "alpha", "--source", "unknown")):
+                with self.subTest(operation=operation, selection=selection):
+                    code, output, errors = self.run_cli(operation, *selection)
+                    self.assertEqual(code, 1)
+                    self.assertEqual(output, "")
+                    self.assertIn("Unknown source identifier", errors)
+                    self.assert_no_actions()
+
+    def test_inspect_requires_one_source_and_exactly_one_target(self):
+        cases = (
+            ("--source", "alpha"),
+            ("--source", "alpha", "--file", "button.tsx", "--component", "button"),
+            ("--source", "alpha", "--source", "beta", "--file", "button.tsx"),
+        )
+        for arguments in cases:
+            with self.subTest(arguments=arguments):
+                code, output, errors = self.run_cli("inspect", *arguments)
+                self.assertEqual(code, 1)
+                self.assertEqual(output, "")
+                self.assertIn("Inspect requires one --source and either --file or --component", errors)
+                self.assert_no_actions()
+
+    def test_inspect_with_one_manifest_source_still_requires_explicit_selection(self):
+        self.mocks["load_sources"].return_value = self.sources[:1]
+        code, _, errors = self.run_cli("inspect", "--file", "button.tsx")
+        self.assertEqual(code, 2)
+        self.assertIn("usage:", errors)
+        self.mocks["load_sources"].assert_not_called()
+        self.assert_no_actions()
+
+    def test_registry_refresh_requires_exactly_one_aceternity_source(self):
+        for selection in (
+            ("--source", "alpha"),
+            ("--source", "aceternity-ui", "--source", "alpha"),
+            ("--source", "aceternity-ui", "--source", "aceternity-ui"),
+        ):
+            with self.subTest(selection=selection):
+                code, _, errors = self.run_cli("refresh-registry", *selection)
+                self.assertEqual(code, 1)
+                self.assertIn("Explicit registry maintenance requires --source aceternity-ui", errors)
+                self.mocks["load_sources"].assert_not_called()
+                self.assert_no_actions()
+
+    def test_explicit_registry_refresh_remains_available(self):
+        code, _, errors = self.run_cli("refresh-registry", "--source", "aceternity-ui")
+        self.assertEqual(code, 0)
+        self.mocks["refresh_aceternity"].assert_called_once_with()
+        self.mocks["load_sources"].assert_not_called()
+        self.mocks["fetch_source"].assert_not_called()
+        self.mocks["verify_source"].assert_not_called()
+        self.assertEqual(errors, "")
+
+    def test_helper_failures_return_one_and_stop_before_later_sources(self):
+        failures = (ValueError("Fixture verification failure"), OSError("Fixture filesystem failure"),
+                    subprocess.CalledProcessError(1, ["git", "status"]))
+        for operation in ("fetch", "verify"):
+            for failure in failures:
+                with self.subTest(operation=operation, failure=type(failure).__name__):
+                    self.mocks[f"{operation}_source"].side_effect = failure
+                    code, output, errors = self.run_cli(operation, "--all")
+                    self.assertEqual(code, 1)
+                    self.assertEqual(self.called_sources(operation), ["alpha"])
+                    self.assertEqual(output, "")
+                    self.assertIn("FAIL:", errors)
+
+    def test_manifest_and_refresh_failures_return_one(self):
+        self.mocks["load_sources"].side_effect = ValueError("Fixture manifest failure")
+        code, _, errors = self.run_cli("fetch", "--source", "alpha")
+        self.assertEqual(code, 1)
+        self.assertIn("Fixture manifest failure", errors)
+        self.assert_no_actions()
+        self.mocks["refresh_aceternity"].side_effect = OSError("Fixture refresh failure")
+        code, _, errors = self.run_cli("refresh-registry", "--source", "aceternity-ui")
+        self.assertEqual(code, 1)
+        self.assertIn("FAIL:", errors)
+        self.mocks["load_sources"].assert_not_called()
+        self.mocks["refresh_aceternity"].assert_called_once_with()
+
+
 class UpstreamSourceTests(unittest.TestCase):
     def setUp(self):
         self.scratch = tempfile.TemporaryDirectory(prefix=".test-tmp-", dir=ROOT)

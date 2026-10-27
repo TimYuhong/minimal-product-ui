@@ -450,6 +450,7 @@ class RegistrySourceTests(unittest.TestCase):
     def test_explicit_refresh_captures_only_public_ui_and_keeps_previous_snapshot(self):
         self.fetch()
         manifest = self.manifest()
+        original_mode = manifest.stat().st_mode
         urls = []
         index = {"name": "aceternity", "homepage": "https://ui.aceternity.com", "items": [
             {"name": "sidebar", "type": "registry:ui"},
@@ -467,7 +468,95 @@ class RegistrySourceTests(unittest.TestCase):
         self.assertEqual(updated["component_count"], 1)
         self.assertNotIn("https://ui.aceternity.com/registry/paid-block.json", urls)
         self.assertTrue((self.target / self.source["required_files"][0]).is_file())
+        self.assertEqual(manifest.stat().st_mode, original_mode)
+        self.assertEqual(set(manifest.parent.iterdir()), {manifest, self.target})
         ui_sources.verify_source(updated, self.cache)
+
+    def test_interrupted_manifest_write_preserves_old_lock_and_removes_temporary(self):
+        self.fetch()
+        manifest = self.manifest()
+        original_lock = manifest.read_bytes()
+        original_entries = set(manifest.parent.iterdir())
+        index = {"name": "aceternity", "homepage": "https://ui.aceternity.com", "items": [
+            {"name": "sidebar", "type": "registry:ui"},
+        ]}
+        payloads = {**self.payloads, "https://ui.aceternity.com/registry.json": json.dumps(index).encode(),
+                    "https://ui.aceternity.com/terms": b"Fixture terms\n"}
+        create_temporary = tempfile.NamedTemporaryFile
+        for failure in (OSError("Disk write interrupted"), KeyboardInterrupt()):
+            with self.subTest(failure=type(failure).__name__):
+                def interrupted_temporary(*args, **kwargs):
+                    stream = create_temporary(*args, **kwargs)
+                    write = stream.write
+                    def interrupted_write(content):
+                        write(content[:32])
+                        stream.flush()
+                        raise failure
+                    stream.write = interrupted_write
+                    return stream
+                with patch.object(ui_sources, "MANIFEST", manifest), \
+                     patch.object(ui_sources, "source_path", return_value=self.target), \
+                     patch.object(ui_sources, "download_registry", side_effect=payloads.__getitem__), \
+                     patch.object(ui_sources.tempfile, "NamedTemporaryFile", side_effect=interrupted_temporary), \
+                     contextlib.redirect_stdout(io.StringIO()):
+                    with self.assertRaises(type(failure)):
+                        ui_sources.refresh_aceternity()
+                self.assertEqual(manifest.read_bytes(), original_lock)
+                self.assertEqual(ui_sources.load_sources(manifest), [self.source])
+                self.assertEqual(set(manifest.parent.iterdir()), original_entries)
+                ui_sources.verify_source(self.source, self.cache)
+
+    def test_invalid_manifest_preserves_old_lock_and_removes_temporary(self):
+        self.fetch()
+        manifest = self.manifest()
+        original_lock = manifest.read_bytes()
+        original_entries = set(manifest.parent.iterdir())
+        with patch.object(ui_sources, "MANIFEST", manifest):
+            with self.assertRaises(ValueError):
+                ui_sources.write_manifest({"schema_version": 1, "sources": []})
+        self.assertEqual(manifest.read_bytes(), original_lock)
+        self.assertEqual(ui_sources.load_sources(manifest), [self.source])
+        self.assertEqual(set(manifest.parent.iterdir()), original_entries)
+        ui_sources.verify_source(self.source, self.cache)
+
+    def test_failed_manifest_replace_preserves_old_lock_and_removes_temporary(self):
+        self.fetch()
+        manifest = self.manifest()
+        original_lock = manifest.read_bytes()
+        original_entries = set(manifest.parent.iterdir())
+        candidate = json.loads(original_lock)
+        candidate["verified_on"] = "2026-10-27"
+        def failed_replace(staged, destination):
+            self.assertEqual(staged.parent, manifest.parent)
+            self.assertNotEqual(staged, manifest)
+            self.assertEqual(destination, manifest)
+            self.assertEqual(json.loads(staged.read_text(encoding="utf-8")), candidate)
+            self.assertEqual(ui_sources.load_sources(staged), [self.source])
+            self.assertEqual(manifest.read_bytes(), original_lock)
+            raise PermissionError("Manifest replacement denied")
+        with patch.object(ui_sources, "MANIFEST", manifest), \
+             patch.object(Path, "replace", failed_replace):
+            with self.assertRaises(PermissionError):
+                ui_sources.write_manifest(candidate)
+        self.assertEqual(manifest.read_bytes(), original_lock)
+        self.assertEqual(ui_sources.load_sources(manifest), [self.source])
+        self.assertEqual(set(manifest.parent.iterdir()), original_entries)
+        ui_sources.verify_source(self.source, self.cache)
+
+    @unittest.skipUnless(ui_sources.os.name == "nt", "Windows read-only file semantics")
+    def test_readonly_manifest_keeps_old_lock_without_temporary_files(self):
+        manifest = self.manifest()
+        original_lock = manifest.read_bytes()
+        original_entries = set(manifest.parent.iterdir())
+        original_mode = manifest.stat().st_mode
+        self.addCleanup(manifest.chmod, original_mode)
+        manifest.chmod(0o444)
+        with patch.object(ui_sources, "MANIFEST", manifest):
+            with self.assertRaises(PermissionError):
+                ui_sources.write_manifest(json.loads(original_lock))
+        self.assertEqual(manifest.read_bytes(), original_lock)
+        self.assertEqual(ui_sources.load_sources(manifest), [self.source])
+        self.assertEqual(set(manifest.parent.iterdir()), original_entries)
 
     def test_failed_refresh_does_not_replace_existing_lock(self):
         self.fetch()

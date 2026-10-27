@@ -6,10 +6,12 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
 import sys
+import tempfile
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
@@ -242,6 +244,29 @@ def fetch_registry(source: dict, cache: Path = CACHE) -> None:
     verify_registry(source, target)
 
 
+def write_manifest(data: dict) -> None:
+    """Publish a validated lock atomically, preserving the old file on failure."""
+    content = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="\n", dir=MANIFEST.parent,
+            prefix=f".{MANIFEST.name}.", suffix=".tmp", delete=False,
+        ) as stream:
+            temporary = Path(stream.name).resolve()
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        load_sources(temporary)
+        # Keep Windows temporaries writable so failed replacements can be cleaned up.
+        if os.name != "nt":
+            temporary.chmod(MANIFEST.stat().st_mode)
+        temporary.replace(MANIFEST)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def refresh_aceternity() -> None:
     """Explicit maintainer operation: capture public UI items, never paid blocks/templates."""
     data = json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -288,7 +313,7 @@ def refresh_aceternity() -> None:
     data["sources"] = [s for s in data["sources"] if s["id"] != source["id"]] + [source]
     data["verified_on"] = datetime.now(timezone.utc).date().isoformat()
     # Generated lock data, refreshed only through this explicit maintainer command.
-    MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_manifest(data)
     print(f"PASS: aceternity-ui {source['version']} ({len(names)} public UI items)", flush=True)
 
 

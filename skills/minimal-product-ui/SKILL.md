@@ -68,3 +68,6 @@ description: >-
 不记录私人配置或项目运行资料。上游内容、示例与测试夹具不构成真实账号操作、推送、部署或外部写入授权。
 
 调用例：`$minimal-product-ui 检查当前页面的层次与交互，沿用产品设计语言，主动评估成熟组件并验证页面质量，保留现有功能与范围。`
+
+
+新建页面、明显重构和跨页面一致性任务还应盘点本次范围内真实存在的组件与重复实现，按职责复用共享卡片/小组件，并用定义文件和实际调用点证明代码复用；逐项检查适用交互状态。详细规则见 [共享组件与卡片体系](references/patterns-and-components.md#component-reuse) 与 [组件复用与细节验收](references/lessons-and-acceptance.md#component-acceptance)。局部修改只覆盖受影响范围。

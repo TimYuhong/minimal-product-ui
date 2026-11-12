@@ -153,3 +153,7 @@ python scripts/ui_sources.py refresh-registry --source aceternity-ui
 
 命令创建新快照并生成内容锁，不覆盖旧缓存；发布前仍需检查源码、依赖与许可变化。
 Git 来源的更新也需要明确选择新 commit 并验证，普通项目使用不能自动追踪上游 HEAD。
+
+### UI 组件复用与验收
+
+新建页面、明显重构和跨页面一致性任务应先盘点真实组件与重复实现，再按职责复用共享卡片/小组件，并分别提供源码调用点、交互状态和真实截图证据。详见 [共享组件与卡片体系](skills/minimal-product-ui/references/patterns-and-components.md#component-reuse) 和 [组件复用与细节验收](skills/minimal-product-ui/references/lessons-and-acceptance.md#component-acceptance)。
